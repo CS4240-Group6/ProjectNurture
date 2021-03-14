@@ -5,7 +5,7 @@ Our VR Farming game developed using Unity for the Oculus Quest :)
 Best run on Oculus Quest / Oculus Quest 2.
 
 ## Scene
-The main scene that we have developed the project on is Main2.
+The main scene that we have developed the project on is Main.
 
 ## Setting Up
 1. Go to Assets > Import Package > Custom Package
