@@ -1,0 +1,114 @@
+1.5:
+Major:
+- Setup Wizard (No more setting overrides)
+- Hand Tracking Examples
+- Vive Index Support
+- Quest Hand Tracking Support
+- General improvements to hand quality and stability
+- Velocity Based Sounds
+- Sound Examples
+
+Minor:
+- Advanced layer options
+- Grabbable Layermask added
+- Highlight Layermask added
+- Improved throw quality
+- Easier to adjust hands to the ideal position/rotation
+- Grab time added with animation curve
+- Grab return time value added
+- Added Hand Public Events Script to access hand events without code
+
+Bug Fixes:
+- Objects no longer freezes when being grabbed by multiple hands during the same frame
+- Objects will no longer be thrown when rapidly grabbing and releasing between two hands
+- Hands are positioned and scaled better for most devices
+- Tiny jitters when the hand is still no longer occur
+- Removed yellow warnings
+
+
+
+1.4:
+FOR UPDATING FROM V1.3 --- Please redownload the input package and try the new demo scene
+
+Major:
+- Brand new demo to show all the new major features
+- Added new gadgets and improved old gadgets:
+	- Steering Wheel
+	- Joystick
+	- Slider
+	- Dial
+	- Door with knob and lock
+- Added Finger Bending Gestures
+- Added Custom Hand Pose Areas
+- Added Custom Hand Pose Driver
+- Added Snap option to Grabbable Place Point
+- Added Grab Time added to Hand for smoother non-instant grabbing option
+- Added Instant Grab option added to Grabbables
+- Added Maintain Grab Offset toggle added to Grabbables
+- Hand Prefabs updated to have much snappier follow settings
+
+Minor:
+- Hands made more stable with static colliders
+- Hand movement smoothness improvements through drag (recommend turning physics timestep to match device Hz/maxFPS)
+- Fixed a jitter that would sometimes occur with the look assist
+- Improvements to SteamVRHandControllerLink
+
+Technical Changes:
+- Removed Legacy Input Package
+- Removed Custom Input Package (instead suggested use XR for examples to build custom setup)
+- Fixed issue with jittering related to non-default render pipeline
+- Gadgets now all have the prefix PhysicsGadget
+- Changed various buttons and gadgets scripts
+- Renamed PoseData to HandPoseData
+- Added additional programmer events in Hand.cs, Grabbable.cs, and PlacePoint.cs
+
+
+
+
+1.3:
+- 2020 XR Demo package
+- Grab Points to Easily Force Auto Grabbing at Predetermined Points (Examples in Demo Scene)
+- Place Points to Easily Allow Placement of Grabbables at Predetermined Points (Examples in Demo Scene)
+- New Robot Hand Model
+- Hands Rotation Offset Value Replaced With Root Offsetting (See FAQ.)
+- ParentOnGrab Value to Grabbables to Allow for Smooth Locomotion While Holding
+- Significantly Reduced Likelyhood of Weird Auto Grabs
+- Significantly Reduced General Jittering
+- Hands with "Hand" Physics Material Will Interact More Smoothly with Static Surfaces
+- Bug Fixes and Errors Solved
+- Added "Editor Auto Grab" toggle to hand for use of continous auto grabbing feature in editor (great for setting static poses)
+- Added function for easy saving and loading of a generated pose at runtime SEE: hand.GetGrabPose()/hand.SetGrabPose()
+- Grabbable objects now have a lock grab option to freeze the hand in place
+- Bug fixes related to multiple grabbables connected to the same rigidbody not working
+- Bug fixes to static pose
+- Fixed version control issue related to dependencies
+- Implemented SteamVR 2020 Input Demo Support
+
+
+
+
+1.2:
+- Added Static Poses With Examples: Gun, Hammer, Cube Pinch 
+- Added Grab Lock 
+- Public Offset Values Added to Hand 
+- Added Teleport Example 
+- Demo Package for Vive SteamVR Support 
+- Demo Package for Oculus Integration Support 
+- Demo Package for Legacy Unity Input System Support 
+- Added Cartoon Hand Example 
+- Updated Documentation 
+- Bug Fixes
+
+
+
+
+1.1:
+- Completely removed instabilities/jittering for holding against static colliders
+- Added editor support for hand and finger script
+- Bug fixes
+- Scene tweaks
+- Updated Documentation with FAQ
+
+
+1.0: 
+- Package released

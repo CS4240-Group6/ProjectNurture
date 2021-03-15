@@ -1,0 +1,9 @@
+Earnest Robot; AKA: Jacob Wright - Lead Developer/Programmer
+
+Shelby Juno - Programming / Scene Development assistance / QA
+
+Brian Hillegeist - Modeling assistance / QA
+
+Reddit user KenNL https://www.reddit.com/user/KenNL/ for all of his public domain models that were used in the kitchen
+
+Github user https://gist.github.com/naojitaniguchi for doubled sided shader used on robot hand

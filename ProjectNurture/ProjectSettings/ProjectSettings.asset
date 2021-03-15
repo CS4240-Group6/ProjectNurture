@@ -4,11 +4,11 @@
 PlayerSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 22
-  productGUID: 086d6d4a21e997942a7d07e08d3f8621
+  productGUID: 00000000000000000000000000000000
   AndroidProfiler: 0
   AndroidFilterTouchesWhenObscured: 0
   AndroidEnableSustainedPerformanceMode: 0
-  defaultScreenOrientation: 3
+  defaultScreenOrientation: 4
   targetDevice: 2
   useOnDemandResources: 0
   accelerometerFrequency: 60
@@ -146,8 +146,7 @@ PlayerSettings:
   androidSupportedAspectRatio: 1
   androidMaxAspectRatio: 2.1
   applicationIdentifier:
-    Android: com.Group6.ProjectNurture
-    Standalone: com.Group6.ProjectNurture
+    Standalone: com.DefaultCompany.AutoHandV1.5Package
   buildNumber:
     Standalone: 0
     iPhone: 0
@@ -156,7 +155,7 @@ PlayerSettings:
   AndroidBundleVersionCode: 1
   AndroidMinSdkVersion: 19
   AndroidTargetSdkVersion: 0
-  AndroidPreferredInstallLocation: 0
+  AndroidPreferredInstallLocation: 1
   aotOptions: 
   stripEngineCode: 1
   iPhoneStrippingLevel: 0
@@ -226,8 +225,8 @@ PlayerSettings:
   iOSAutomaticallyDetectAndAddCapabilities: 1
   appleEnableProMotion: 0
   shaderPrecisionModel: 0
-  clonedFromGUID: c0afd0d1d80e3634a9dac47e8a0426ea
-  templatePackageId: com.unity.template.3d@5.0.4
+  clonedFromGUID: 61852de074c1da64a906f4cefe0bc7e2
+  templatePackageId: 
   templateDefaultScene: Assets/Scenes/SampleScene.unity
   useCustomMainManifest: 0
   useCustomLauncherManifest: 0
@@ -310,7 +309,7 @@ PlayerSettings:
     m_GraphicsJobMode: 0
   m_BuildTargetGraphicsAPIs:
   - m_BuildTarget: AndroidPlayer
-    m_APIs: 0b000000
+    m_APIs: 150000000b000000
     m_Automatic: 0
   - m_BuildTarget: iOSSupport
     m_APIs: 10000000
@@ -593,8 +592,8 @@ PlayerSettings:
   apiCompatibilityLevelPerPlatform: {}
   m_RenderingPath: 1
   m_MobileRenderingPath: 1
-  metroPackageName: Template3D
-  metroPackageVersion: 1.0.0.0
+  metroPackageName: Template_3D
+  metroPackageVersion: 
   metroCertificatePath: 
   metroCertificatePassword: 
   metroCertificateSubject: 
@@ -602,7 +601,7 @@ PlayerSettings:
   metroCertificateNotAfter: 0000000000000000
   metroApplicationDescription: Template_3D
   wsaImages: {}
-  metroTileShortName: ProjectNurture
+  metroTileShortName: 
   metroTileShowName: 0
   metroMediumTileShowName: 0
   metroLargeTileShowName: 0
