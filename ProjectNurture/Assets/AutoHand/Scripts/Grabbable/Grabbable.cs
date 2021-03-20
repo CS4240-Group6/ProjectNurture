@@ -9,6 +9,8 @@ namespace Autohand {
     public class Grabbable : MonoBehaviour {
 
 
+        public GameObject seedBag;
+        public GameObject seedPrefab;
         [Header("Holding Settings")]
 
         [Tooltip("The physics body to connect this colliders grab to - if left empty will default to local body")]
@@ -133,7 +135,9 @@ namespace Autohand {
         }
 
         protected void Start() {
-            if(!setSceneManagerLoad)
+            seedBag = GameObject.Find("SeedBag");
+
+            if (!setSceneManagerLoad)
                 SceneManager.sceneLoaded += (scene, mode) => { hands = null; };
             setSceneManagerLoad = true;
             if(hands == null)
@@ -150,6 +154,13 @@ namespace Autohand {
 
             if(makeChildrenGrabbable)
                 MakeChildrenGrabbable();
+
+            //test
+            if (Input.GetMouseButtonDown(0))
+            {
+                Debug.Log("Pressed primary button.");
+                OnGrab(hands[0]);
+            }
         }
 
 
@@ -239,6 +250,12 @@ namespace Autohand {
 
         /// <summary>Called by the hand whenever this item is grabbed</summary>
         public virtual void OnGrab(Hand hand) {
+            if (GameObject.ReferenceEquals(this, seedBag))
+            {
+                OnGrabSeeds(hand);
+                return;
+            }
+
             placePoint?.Remove(this);
             placePoint = null;
             if(lockHandOnGrab)
@@ -263,7 +280,43 @@ namespace Autohand {
 
             OnGrabEvent?.Invoke(hand, this);
         }
-        
+
+        /// <summary>Called by the hand whenever user is pretending to be grabbed.
+        /// Item does not move with hand, instead some objects will be generated inside the hand</summary>
+        public virtual void OnGrabSeeds(Hand hand)
+        {
+            placePoint?.Remove(this);
+            placePoint = null;
+            if (lockHandOnGrab)
+                hand.GetComponent<Rigidbody>().isKinematic = true;
+
+            if (!body.isKinematic)
+                body.collisionDetectionMode = CollisionDetectionMode.ContinuousDynamic;
+            else
+                body.collisionDetectionMode = CollisionDetectionMode.ContinuousSpeculative;
+
+            if (resetLayerRoutine != null)
+                StopCoroutine(resetLayerRoutine);
+            resetLayerRoutine = StartCoroutine(ResetLayer(0.1f, LayerMask.NameToLayer(Hand.grabbingLayerName)));
+
+            if (parentOnGrab)
+            {
+               for(int i = 0; i < 3; i++)
+                {
+                    GameObject seed = Instantiate(seedPrefab, new Vector3(0, 0, 0), Quaternion.identity);
+                    seed.transform.parent = hand.transform.parent;
+                }
+            }
+               
+
+            heldBy?.Add(hand);
+            throwing = false;
+            beingHeld = true;
+            onGrab?.Invoke();
+
+            OnGrabEvent?.Invoke(hand, this);
+        }
+
         /// <summary>Called by the hand whenever this item is release</summary>
         public virtual void OnRelease(Hand hand, bool thrown) {
             if(beingHeld) {
@@ -272,7 +325,6 @@ namespace Autohand {
 
                 if(!heldBy.Remove(hand))
                     return;
-
 
                 if(heldBy.Count == 0){
                     beingHeld = false;

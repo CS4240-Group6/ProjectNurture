@@ -3,7 +3,8 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Ignite
   layers:
   - Default
   - TransparentFX
@@ -13,8 +14,10 @@ TagManager:
   - UI
   - 
   - 
-  - 
-  - 
+  - Grabbable
+  - Hands
+  - Teleporter
+  - NoHandCollide
   - 
   - 
   - 
@@ -32,9 +35,7 @@ TagManager:
   - 
   - 
   - HandPlayer
-  - Hand
   - HandHolding
-  - Grabbable
   - Grabbing
   - Releasing
   m_SortingLayers:
