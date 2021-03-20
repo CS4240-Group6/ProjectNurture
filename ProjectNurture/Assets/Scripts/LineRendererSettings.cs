@@ -18,6 +18,13 @@ public class LineRendererSettings : MonoBehaviour
     public Button btn;
     public Image img;
 
+    // Prefabs to spawn upon click
+    public GameObject spadePrefab;
+    public GameObject seedPrefab;
+    public GameObject wateringCanPrefab;
+    public GameObject harvestPrefab;
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -73,25 +80,26 @@ public class LineRendererSettings : MonoBehaviour
         if (btn != null) 
         {
             img = btn.GetComponent<Image>();
+            img.color = Color.green;
             if (btn.name == "dig_button")
             {
-                img.color = Color.gray;
                 Debug.Log("Dig button clicked");
+                Instantiate(spadePrefab, new Vector3(0, 0, 0), Quaternion.identity);
             }
             else if (btn.name == "plant_button")
             {
-                img.color = Color.green;
                 Debug.Log("Plant button clicked");
+                Instantiate(seedPrefab, new Vector3(0, 0, 0), Quaternion.identity);
             }
             else if (btn.name == "water_button")
             {
-                img.color = Color.blue;
                 Debug.Log("Water button clicked");
+                Instantiate(wateringCanPrefab, new Vector3(0, 0, 0), Quaternion.identity);
             }
             else if (btn.name == "harvest_button") 
             {
-                img.color = Color.yellow;
                 Debug.Log("Harvest button clicked");
+                Instantiate(harvestPrefab, new Vector3(0, 0, 0), Quaternion.identity);
             }
         }
     

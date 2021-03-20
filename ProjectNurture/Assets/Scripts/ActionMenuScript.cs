@@ -5,12 +5,7 @@ using UnityEngine.UI;
 
 public class ActionMenuScript : MonoBehaviour
 {
-    // Debug 
-    public TextController tempTextController;
-
-    //1. Add public variable for canvas score counter UI
-    private GameObject ScoreCounter;
-    private GameObject ScorePanel;
+    private GameObject ActionMenu;
 
     // Name of Action Menu game object in the scene
     public string actionMenuName = "ActionMenu";
@@ -18,7 +13,7 @@ public class ActionMenuScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        ScoreCounter = GameObject.Find(actionMenuName);
+        ActionMenu = GameObject.Find(actionMenuName);
 
     }
 
@@ -30,12 +25,12 @@ public class ActionMenuScript : MonoBehaviour
 
     public void showUI()
     {
-        ScoreCounter.SetActive(true);
+        ActionMenu.SetActive(true);
     }
 
     public void removeUI()
     {
-        ScoreCounter.SetActive(false);
+        ActionMenu.SetActive(false);
     }
 
 }
