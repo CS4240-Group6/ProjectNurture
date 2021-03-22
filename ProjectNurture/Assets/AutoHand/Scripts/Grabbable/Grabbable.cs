@@ -135,7 +135,6 @@ namespace Autohand {
         }
 
         protected void Start() {
-            seedBag = GameObject.Find("SeedBag");
 
             if (!setSceneManagerLoad)
                 SceneManager.sceneLoaded += (scene, mode) => { hands = null; };
