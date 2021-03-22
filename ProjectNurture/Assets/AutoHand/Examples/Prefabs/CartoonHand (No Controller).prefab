@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6802925457439034183}
   - component: {fileID: 3950661547181697067}
-  m_Layer: 22
+  m_Layer: 27
   m_Name: Middle1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -57,7 +57,7 @@ GameObject:
   - component: {fileID: 6084775910959808826}
   - component: {fileID: 6765653117354807039}
   - component: {fileID: 5973931229992314234}
-  m_Layer: 22
+  m_Layer: 27
   m_Name: Audio
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -280,7 +280,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7239624161794789393}
   - component: {fileID: 2847605279581117405}
-  m_Layer: 22
+  m_Layer: 27
   m_Name: Helper Scripts
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -325,7 +325,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7168498782858022277}
-  m_Layer: 22
+  m_Layer: 27
   m_Name: Tip
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -358,7 +358,7 @@ GameObject:
   - component: {fileID: 1815447913508213403}
   - component: {fileID: 1815447913508213402}
   - component: {fileID: 4314603099671321086}
-  m_Layer: 22
+  m_Layer: 27
   m_Name: CartoonHand (No Controller)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -462,11 +462,11 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 0
   lookAssistSpeed: 2
-  ignoreReleaseTime: 0.3
   grabSpreadOffset: 0
   showGizmos: 0
   editorAutoGrab: 0
   useLayerBasedAutoGrab: 0
+  editorSelected: 0
 --- !u!135 &4314603099671321086
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -489,7 +489,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1815447913620583107}
-  m_Layer: 22
+  m_Layer: 27
   m_Name: Palm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -519,7 +519,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3489497682786644654}
-  m_Layer: 22
+  m_Layer: 27
   m_Name: Thumb2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -550,7 +550,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2440641823350721957}
-  m_Layer: 22
+  m_Layer: 27
   m_Name: Index2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -582,7 +582,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5035255847884868710}
   - component: {fileID: 7357962698463166009}
-  m_Layer: 22
+  m_Layer: 27
   m_Name: Index1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -629,7 +629,7 @@ GameObject:
   - component: {fileID: 2450005289509291205}
   - component: {fileID: 814065189471789213}
   - component: {fileID: 5454005379987043886}
-  m_Layer: 22
+  m_Layer: 27
   m_Name: Pinky
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -716,7 +716,7 @@ GameObject:
   m_Component:
   - component: {fileID: 913841753962969329}
   - component: {fileID: 5038818853956468854}
-  m_Layer: 22
+  m_Layer: 27
   m_Name: Collider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -761,7 +761,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6937879638954067428}
   - component: {fileID: 7734015958967858261}
-  m_Layer: 22
+  m_Layer: 27
   m_Name: PalmCollider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -804,7 +804,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4750464964416253041}
-  m_Layer: 22
+  m_Layer: 27
   m_Name: Pinky2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -835,7 +835,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9147770121004297033}
-  m_Layer: 22
+  m_Layer: 27
   m_Name: Tip
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -866,7 +866,7 @@ GameObject:
   m_Component:
   - component: {fileID: 534272473020452346}
   - component: {fileID: 3491625959266354581}
-  m_Layer: 22
+  m_Layer: 27
   m_Name: hand:mesh0001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -958,7 +958,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4063636483813845205}
-  m_Layer: 22
+  m_Layer: 27
   m_Name: Arm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -991,7 +991,7 @@ GameObject:
   - component: {fileID: 7214949519689549642}
   - component: {fileID: 3104218448770134146}
   - component: {fileID: 5165056213551709976}
-  m_Layer: 22
+  m_Layer: 27
   m_Name: Middle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1077,7 +1077,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3705573749565042669}
-  m_Layer: 22
+  m_Layer: 27
   m_Name: Thumb1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1109,7 +1109,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7298119270639962675}
-  m_Layer: 22
+  m_Layer: 27
   m_Name: Tip
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1139,7 +1139,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4371523737478850454}
-  m_Layer: 22
+  m_Layer: 27
   m_Name: Middle2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1170,7 +1170,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7686067514415817708}
-  m_Layer: 22
+  m_Layer: 27
   m_Name: Wrist
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1204,7 +1204,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2382328775094402964}
-  m_Layer: 22
+  m_Layer: 27
   m_Name: Pivot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1239,7 +1239,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1802860408717011840}
   - component: {fileID: 5429227765307061848}
-  m_Layer: 22
+  m_Layer: 27
   m_Name: Pinky1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1284,7 +1284,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3615359128095450868}
-  m_Layer: 22
+  m_Layer: 27
   m_Name: Tip
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1315,7 +1315,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1823307464103710037}
   - component: {fileID: 6477352414557345009}
-  m_Layer: 22
+  m_Layer: 27
   m_Name: Collider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1361,7 +1361,7 @@ GameObject:
   - component: {fileID: 899608369317220506}
   - component: {fileID: 6185395775999058418}
   - component: {fileID: 3354937345704825820}
-  m_Layer: 22
+  m_Layer: 27
   m_Name: Index
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1448,7 +1448,7 @@ GameObject:
   m_Component:
   - component: {fileID: 613883307278596830}
   - component: {fileID: 971444706731232959}
-  m_Layer: 22
+  m_Layer: 27
   m_Name: Thumb
   m_TagString: Untagged
   m_Icon: {fileID: 0}
