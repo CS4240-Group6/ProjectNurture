@@ -249,8 +249,10 @@ namespace Autohand {
 
         /// <summary>Called by the hand whenever this item is grabbed</summary>
         public virtual void OnGrab(Hand hand) {
+            Debug.Log("inside OnGrab method");
             if (GameObject.ReferenceEquals(this, seedBag))
             {
+                Debug.Log("Grabbed object equals seedbag");
                 OnGrabSeeds(hand);
                 return;
             }
@@ -284,6 +286,7 @@ namespace Autohand {
         /// Item does not move with hand, instead some objects will be generated inside the hand</summary>
         public virtual void OnGrabSeeds(Hand hand)
         {
+            Debug.Log("inside OnGrabSeed method");
             placePoint?.Remove(this);
             placePoint = null;
             if (lockHandOnGrab)
@@ -302,6 +305,7 @@ namespace Autohand {
             {
                for(int i = 0; i < 3; i++)
                 {
+                    Debug.Log("3 seeds instantiated");
                     GameObject seed = Instantiate(seedPrefab, new Vector3(0, 0, 0), Quaternion.identity);
                     seed.transform.parent = hand.transform.parent;
                 }
