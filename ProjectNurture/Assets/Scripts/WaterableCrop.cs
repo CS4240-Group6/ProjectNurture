@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class WaterableCropScript : MonoBehaviour
+public class WaterableCrop : MonoBehaviour
 {
     public bool isCanvasVisible = false;
 
