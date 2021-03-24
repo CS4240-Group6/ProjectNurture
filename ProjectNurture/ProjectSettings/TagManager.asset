@@ -4,7 +4,7 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Ignite
+  - Spade
   layers:
   - Default
   - TransparentFX
@@ -14,10 +14,8 @@ TagManager:
   - UI
   - 
   - 
-  - Grabbable
-  - Hands
-  - Teleporter
-  - NoHandCollide
+  - 
+  - 
   - 
   - 
   - 
@@ -35,7 +33,9 @@ TagManager:
   - 
   - 
   - HandPlayer
+  - Hand
   - HandHolding
+  - Grabbable
   - Grabbing
   - Releasing
   m_SortingLayers:
