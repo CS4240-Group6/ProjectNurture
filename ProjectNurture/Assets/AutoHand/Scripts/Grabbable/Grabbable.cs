@@ -310,13 +310,8 @@ namespace Autohand {
 			for(int i = 0; i < 3; i++)
 			{
 				textBox.text = "3 seeds instantiated";
-				GameObject seed = Instantiate(seedPrefab, new Vector3(0, 0, 0), Quaternion.identity);
-				seed.GetComponent<Grabbable>().body.transform.parent = hand.transform.parent;
+				GameObject seed = Instantiate(seedPrefab, hand.transform.position, Quaternion.identity);
 			}
-			
-			heldBy?.Add(hand);
-			throwing = false;
-			beingHeld = true;
 		}
 
 		/// <summary>Called by the hand whenever this item is release</summary>
