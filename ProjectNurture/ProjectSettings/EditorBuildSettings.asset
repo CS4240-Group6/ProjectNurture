@@ -8,9 +8,12 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/AutoHand/Examples/Scenes/Oculus Integration/Demo.unity
     guid: f077d52fe9b27704b9cfab692a674a7a
-  - enabled: 1
+  - enabled: 0
     path: Assets/Digging/TestDigging.unity
     guid: 8c748fc70776dc642bc39b9363ce1bce
+  - enabled: 1
+    path: Assets/Scenes/Planting.unity
+    guid: 84880a49f206e79458189160fbdc37ed
   m_configObjects:
     Unity.XR.Oculus.Settings: {fileID: 11400000, guid: 5680aa5963553b2459c4ab15d4169db8,
       type: 2}
