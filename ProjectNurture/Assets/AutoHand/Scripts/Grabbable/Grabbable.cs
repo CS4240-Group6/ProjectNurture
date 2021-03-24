@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 namespace Autohand {
     public class Grabbable : MonoBehaviour {
@@ -11,6 +12,9 @@ namespace Autohand {
 
         public GameObject seedBag;
         public GameObject seedPrefab;
+
+        //test 
+        public Text textBox;
         [Header("Holding Settings")]
 
         [Tooltip("The physics body to connect this colliders grab to - if left empty will default to local body")]
@@ -135,7 +139,7 @@ namespace Autohand {
         }
 
         protected void Start() {
-
+            textBox.text = "On start...";
             if (!setSceneManagerLoad)
                 SceneManager.sceneLoaded += (scene, mode) => { hands = null; };
             setSceneManagerLoad = true;
@@ -154,12 +158,6 @@ namespace Autohand {
             if(makeChildrenGrabbable)
                 MakeChildrenGrabbable();
 
-            //test
-            if (Input.GetMouseButtonDown(0))
-            {
-                Debug.Log("Pressed primary button.");
-                OnGrab(hands[0]);
-            }
         }
 
 
@@ -185,6 +183,13 @@ namespace Autohand {
             if(beingHeld) {
                 lastCenterOfMassRot = body.transform.rotation;
                 lastCenterOfMassPos = body.transform.position;
+            }
+
+            //test
+            if (Input.GetMouseButtonDown(0))
+            {
+                textBox.text = "Pressed primary button.";
+                OnGrabSeeds(hands[0]);
             }
         }
 
@@ -249,10 +254,10 @@ namespace Autohand {
 
         /// <summary>Called by the hand whenever this item is grabbed</summary>
         public virtual void OnGrab(Hand hand) {
-            Debug.Log("inside OnGrab method");
+            textBox.text = "inside OnGrab method";
             if (GameObject.ReferenceEquals(this, seedBag))
             {
-                Debug.Log("Grabbed object equals seedbag");
+                textBox.text = "Grabbed object equals seedbag";
                 OnGrabSeeds(hand);
                 return;
             }
@@ -286,7 +291,7 @@ namespace Autohand {
         /// Item does not move with hand, instead some objects will be generated inside the hand</summary>
         public virtual void OnGrabSeeds(Hand hand)
         {
-            Debug.Log("inside OnGrabSeed method");
+            textBox.text = "inside OnGrabSeed method";
             placePoint?.Remove(this);
             placePoint = null;
             if (lockHandOnGrab)
@@ -305,7 +310,7 @@ namespace Autohand {
             {
                for(int i = 0; i < 3; i++)
                 {
-                    Debug.Log("3 seeds instantiated");
+                    textBox.text = "3 seeds instantiated";
                     GameObject seed = Instantiate(seedPrefab, new Vector3(0, 0, 0), Quaternion.identity);
                     seed.transform.parent = hand.transform.parent;
                 }
