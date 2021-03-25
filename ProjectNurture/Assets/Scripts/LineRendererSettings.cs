@@ -48,31 +48,40 @@ public class LineRendererSettings : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        AlignLineRenderer(rend);
+        if (AlignLineRenderer(rend) && Input.GetAxis("Submit") > 0) 
+        {
+            btn.onClick.Invoke();
+        }
     }
 
-    public void AlignLineRenderer(LineRenderer rend) 
+    public bool AlignLineRenderer(LineRenderer rend) 
     {
         Ray ray;
-        ray = new Ray(transform.position, transform.forward);
         RaycastHit hit;
+        bool hitBtn = false;  //boolean to keep track if line renderer hits a button
+        
+        ray = new Ray(transform.position, transform.forward);
+        Debug.DrawRay(ray.origin, ray.direction);   //debug
 
         if (Physics.Raycast(ray, out hit, layerMask))
         {
-            btn = hit.collider.gameObject.GetComponent<Button>();
-            points[1] = transform.forward + new Vector3(0, 0, hit.distance);
+            points[1] = Vector3.zero + new Vector3(0, 0, hit.distance);
             rend.startColor = Color.red;
             rend.endColor = Color.red;
+            btn = hit.collider.gameObject.GetComponent<Button>();
+            hitBtn = true;
         }
         else 
         {
-            points[1] = transform.forward + new Vector3(0, 0, 20);
+            points[1] = Vector3.zero + new Vector3(0, 0, 50);
             rend.startColor = Color.green;
             rend.endColor = Color.green;
+            hitBtn = false;
         }
 
         rend.SetPositions(points);
         rend.material.color = rend.startColor;
+        return hitBtn;
     }
 
     public void ColorChangeOnClick() 
