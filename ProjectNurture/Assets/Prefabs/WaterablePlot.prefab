@@ -860,8 +860,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   waterLevelCurrent: 0
   waterLevelMax: 10
-  waterLevelGoal: 7
-  waterLevelBuffer: 2
+  waterLevelGoal: 6
+  waterLevelBuffer: 3
   waterEvaporationPeriod: 30
   nextStageWaitDelay: 10
   isCanvasVisible: 1

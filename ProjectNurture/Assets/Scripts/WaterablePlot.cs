@@ -28,7 +28,7 @@ public class WaterablePlot : MonoBehaviour
     private bool isTransitioningToNextStage = false;
     private Coroutine nextStageRoutine = null;
 
-    void Start()
+    private void Start()
     {
         soundController = GetComponent<SoundController>();
         plantStageController = GetComponent<PlantStageController>();
@@ -42,7 +42,7 @@ public class WaterablePlot : MonoBehaviour
         UpdateSoilMaterial();
     }
 
-    void Update()
+    private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
@@ -50,7 +50,7 @@ public class WaterablePlot : MonoBehaviour
         }
     }
 
-    void SetIsWaterBarVisible(bool val)
+    private void SetIsWaterBarVisible(bool val)
     {
         isCanvasVisible = val;
         canvas.SetActive(val);
@@ -93,7 +93,7 @@ public class WaterablePlot : MonoBehaviour
             {
                 // destroy plant, reset stage
                 plantStageController.ResetStage();
-                ResetWaterLevel();
+                ResetWater();
                 StopCoroutine(nextStageRoutine);
             }
 
@@ -102,22 +102,11 @@ public class WaterablePlot : MonoBehaviour
 
     }
 
-    private void ResetWaterLevel()
+    private void ResetWater()
     {
         waterLevelCurrent = 0;
         waterBar.SetWaterLevel(waterLevelCurrent);
-    }
-
-    private IEnumerator StartNextStage()
-    {
-        while (isTransitioningToNextStage)
-        {
-            yield return new WaitForSeconds(nextStageWaitDelay);
-            plantStageController.NextStage();
-            ResetWaterLevel();
-            isTransitioningToNextStage = false;
-            nextStageRoutine = null;
-        }
+        UpdateSoilMaterial();
     }
 
     private void ReduceWater(int amount)
@@ -127,6 +116,18 @@ public class WaterablePlot : MonoBehaviour
             waterLevelCurrent -= amount;
             waterBar.SetWaterLevel(waterLevelCurrent);
             UpdateSoilMaterial();
+        }
+    }
+
+    private IEnumerator StartNextStage()
+    {
+        while (isTransitioningToNextStage)
+        {
+            yield return new WaitForSeconds(nextStageWaitDelay);
+            plantStageController.NextStage();
+            ResetWater();
+            isTransitioningToNextStage = false;
+            nextStageRoutine = null;
         }
     }
 

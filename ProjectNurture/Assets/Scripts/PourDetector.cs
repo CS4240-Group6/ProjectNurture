@@ -12,12 +12,12 @@ public class PourDetector : MonoBehaviour
     private bool isPouring = false;
     private WaterStream currentStream = null;
 
-    void Start()
+    private void Start()
     {
         pouringSoundEffect = GetComponent<AudioSource>();
     }
 
-    void Update()
+    private void Update()
     {
         bool shouldPour = CalculatePourAngle() < pourThreshold;
 

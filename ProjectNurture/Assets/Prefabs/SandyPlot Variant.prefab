@@ -35,7 +35,7 @@ PrefabInstance:
     - target: {fileID: 1720498154393184762, guid: 02cb5061e9a8a4317a30805b7e83dda3,
         type: 3}
       propertyPath: waterLevelGoal
-      value: 5
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 1720498154393184762, guid: 02cb5061e9a8a4317a30805b7e83dda3,
         type: 3}
@@ -50,7 +50,7 @@ PrefabInstance:
     - target: {fileID: 1722119063176852820, guid: 02cb5061e9a8a4317a30805b7e83dda3,
         type: 3}
       propertyPath: m_Name
-      value: SandyPlot
+      value: SandyPlot Variant
       objectReference: {fileID: 0}
     - target: {fileID: 1724340792084236180, guid: 02cb5061e9a8a4317a30805b7e83dda3,
         type: 3}

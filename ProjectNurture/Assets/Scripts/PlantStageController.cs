@@ -14,7 +14,7 @@ public class PlantStageController : MonoBehaviour
     private GameObject currentStage = null;
     private SoundController soundController = null;
 
-    void Start()
+    private void Start()
     {
         soundController = GetComponent<SoundController>();
         SetCurrentStage(currentStageIndex, false);
@@ -36,7 +36,7 @@ public class PlantStageController : MonoBehaviour
     private void SetCurrentStage(int index, bool shouldPlayAudio)
     {
         currentStageIndex = index;
-        
+
         if (shouldPlayAudio) 
         {
             soundController.PlayAudio(newStageSoundEffect);

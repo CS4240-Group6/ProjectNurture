@@ -7,7 +7,7 @@ public class SoundController : MonoBehaviour
 
     private AudioSource audioPlayer = null;
 
-    void Awake()
+    private void Awake()
     {
         audioPlayer = GetComponent<AudioSource>();
 
