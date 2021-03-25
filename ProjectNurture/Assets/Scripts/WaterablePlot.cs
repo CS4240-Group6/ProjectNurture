@@ -7,23 +7,33 @@ public class WaterablePlot : MonoBehaviour
     public int waterLevelCurrent = 0;
     public int waterLevelMax = 10;
     public int waterLevelGoal = 7;
-    public float waterEvaporationPeriod = 15f; // water level is reduced by 1 every 15s
+    public int waterLevelBuffer = 2; // if player waters more than goal + buffer, plant dies
+    public float waterEvaporationPeriod = 30f; // water level is reduced by 1 every 30s
 
-    public GameObject waterBarCanvas = null;
-    public WaterBar waterBar = null;
+    public float nextStageWaitDelay = 10f;
+
     public bool isCanvasVisible = true;
+    public GameObject canvas = null;
+    public WaterBar waterBar = null;
+    public GameObject crossIcon = null;
 
-    public AudioSource successSoundEffect = null;
+    public AudioClip successSoundEffect = null;
+    public AudioClip warningSoundEffect = null;
 
     // index 0 contains the dry soil material, index 1 contains the wet soil material
     public Material[] soilMaterials;
 
-    public GameObject[] plantStages = null;
-    private int currentStage = 0;
+    private SoundController soundController = null;
+    private PlantStageController plantStageController = null;
+    private bool isTransitioningToNextStage = false;
+    private Coroutine nextStageRoutine = null;
 
     void Start()
     {
-        waterBarCanvas.SetActive(isCanvasVisible);
+        soundController = GetComponent<SoundController>();
+        plantStageController = GetComponent<PlantStageController>();
+
+        canvas.SetActive(isCanvasVisible);
         
         waterBar.SetMaxWaterLevel(waterLevelMax, waterLevelGoal);
         waterBar.SetWaterLevel(waterLevelCurrent);
@@ -43,7 +53,7 @@ public class WaterablePlot : MonoBehaviour
     void SetIsWaterBarVisible(bool val)
     {
         isCanvasVisible = val;
-        waterBarCanvas.SetActive(val);
+        canvas.SetActive(val);
     }
 
     private IEnumerator ReduceWaterOverTime()
@@ -68,12 +78,46 @@ public class WaterablePlot : MonoBehaviour
 
             if (waterLevelCurrent == waterLevelGoal)
             {
-                successSoundEffect.Play();
+                soundController.PlayAudio(successSoundEffect);
+                isTransitioningToNextStage = true;
+                nextStageRoutine = StartCoroutine(StartNextStage());
+            }
+
+            if (waterLevelCurrent > waterLevelGoal)
+            {
+                soundController.PlayAudio(warningSoundEffect);
+                crossIcon.SetActive(true);
+            }
+
+            if (waterLevelCurrent > waterLevelGoal + waterLevelBuffer)
+            {
+                // destroy plant, reset stage
+                plantStageController.ResetStage();
+                ResetWaterLevel();
+                StopCoroutine(nextStageRoutine);
             }
 
             UpdateSoilMaterial();
         }
 
+    }
+
+    private void ResetWaterLevel()
+    {
+        waterLevelCurrent = 0;
+        waterBar.SetWaterLevel(waterLevelCurrent);
+    }
+
+    private IEnumerator StartNextStage()
+    {
+        while (isTransitioningToNextStage)
+        {
+            yield return new WaitForSeconds(nextStageWaitDelay);
+            plantStageController.NextStage();
+            ResetWaterLevel();
+            isTransitioningToNextStage = false;
+            nextStageRoutine = null;
+        }
     }
 
     private void ReduceWater(int amount)

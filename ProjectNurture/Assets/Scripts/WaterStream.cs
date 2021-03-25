@@ -6,7 +6,6 @@ public class WaterStream : MonoBehaviour
 {
     private LineRenderer lineRenderer = null;
     private ParticleSystem splashParticle = null;
-    // private MeshCollider meshCollider = null;
 
     private Coroutine pourRoutine = null;
     private Vector3 targetPosition = Vector3.zero;
