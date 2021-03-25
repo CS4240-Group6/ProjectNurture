@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class WaterBarScript : MonoBehaviour
+public class WaterBar : MonoBehaviour
 {
     public Slider slider;
 

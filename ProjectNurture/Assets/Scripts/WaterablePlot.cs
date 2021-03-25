@@ -2,20 +2,29 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class WaterableCrop : MonoBehaviour
+public class WaterablePlot : MonoBehaviour
 {
-    public bool isCanvasVisible = false;
+    public bool isCanvasVisible = true;
+
+    public int waterLevelGoal = 7;
 
     public int maxWaterLevel = 10;
     public int currentWaterLevel;
 
-    public WaterBarScript waterBar;
-    public GameObject waterBarCanvas;
+    // index 0 being the most dry material
+    public Material[] soilMaterials;
+
+    public WaterBar waterBar = null;
+    public GameObject waterBarCanvas = null;
+
+    public GameObject[] plantStages = null;
+    private int currentStage = 0;
 
     void Start()
     {
         currentWaterLevel = 0;
         waterBar.SetMaxWaterLevel(maxWaterLevel);
+        ChangeSoilMaterial(0);
     }
 
     void Update()
@@ -42,22 +51,31 @@ public class WaterableCrop : MonoBehaviour
         waterBarCanvas.SetActive(val);
     }
 
-    void AddWater(int amount)
+    public void AddWater(int amount)
     {
         if (currentWaterLevel != maxWaterLevel)
         {
             currentWaterLevel += amount;
             waterBar.SetWaterLevel(currentWaterLevel);
+            ChangeSoilMaterial(1);
         }
     }
 
     // reduce water when time passes
-    void ReduceWater(int amount)
+    private void ReduceWater(int amount)
     {
+        ChangeSoilMaterial(0);
+
         if (currentWaterLevel > 0)
         {
             currentWaterLevel -= amount;
             waterBar.SetWaterLevel(currentWaterLevel);
+            ChangeSoilMaterial(0);
         }
+    }
+
+    private void ChangeSoilMaterial(int index)
+    {
+        gameObject.GetComponent<Renderer>().material = soilMaterials[index];
     }
 }

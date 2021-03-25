@@ -32,23 +32,18 @@ public class PourDetector : MonoBehaviour
 
     private void StartPour()
     {
-        Debug.Log("start pouring");
-
         currentStream = CreateStream();
         currentStream.Begin();
     }
 
     private void EndPour()
     {
-        Debug.Log("end pouring");
-
         currentStream.End();
         currentStream = null;
     }
 
     private float CalculatePourAngle()
     {
-        // return 0;
         return transform.forward.y * Mathf.Rad2Deg;
     }
 

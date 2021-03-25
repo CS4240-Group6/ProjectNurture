@@ -6,12 +6,16 @@ public class WaterStream : MonoBehaviour
 {
     private LineRenderer lineRenderer = null;
     private ParticleSystem splashParticle = null;
+    // private MeshCollider meshCollider = null;
 
     private Coroutine pourRoutine = null;
     private Vector3 targetPosition = Vector3.zero;
 
     private float raycastDistance = 10f;
     private float streamSpeed = 1.75f;
+
+    private WaterablePlot currentPlot = null;
+    private float waterSpeed = 1f; // waters every 1s
     
     private void Awake()
     {  
@@ -29,6 +33,7 @@ public class WaterStream : MonoBehaviour
     {
         StartCoroutine(UpdateParticle());
         pourRoutine = StartCoroutine(BeginPour());
+        StartCoroutine(WaterPlot());
     }
 
     public void End()
@@ -37,12 +42,26 @@ public class WaterStream : MonoBehaviour
         pourRoutine = StartCoroutine(EndPour());
     }
 
+    private IEnumerator BeginPour()
+    {
+        while(gameObject.activeSelf)
+        {
+            targetPosition = FindEndPoint();
+
+            MoveToPosition(0, transform.position);
+            AnimateToPosition(1, targetPosition);
+
+            yield return null;
+        }
+    }
+
     private IEnumerator EndPour()
     {
         while(!HasReachedPosition(0, targetPosition))
         {
             AnimateToPosition(0, targetPosition);
             AnimateToPosition(1, targetPosition);
+
             yield return null;
         }
 
@@ -50,16 +69,29 @@ public class WaterStream : MonoBehaviour
         Destroy(gameObject);
     }
 
-    private IEnumerator BeginPour()
+    private IEnumerator WaterPlot()
     {
-        while(gameObject.activeSelf)
+        while(!HasReachedPosition(0, targetPosition))
         {
-            targetPosition = FindEndPoint();
-            // water any crops in the area
-            // find if line renderer can collide?
+            bool isHitting = HasReachedPosition(1, targetPosition);
+            // increment water if the stream has collided onto something, and currentPlot exists 
+            if (isHitting && currentPlot != null)
+            {
+                currentPlot.AddWater(1);
+            }
 
-            MoveToPosition(0, transform.position);
-            AnimateToPosition(1, targetPosition);
+            yield return new WaitForSeconds(waterSpeed);
+        }
+    }
+
+    private IEnumerator UpdateParticle()
+    {
+        while (gameObject.activeSelf)
+        {
+            splashParticle.gameObject.transform.position = targetPosition;
+
+            bool isHitting = HasReachedPosition(1, targetPosition);
+            splashParticle.gameObject.SetActive(isHitting);
 
             yield return null;
         }
@@ -74,7 +106,26 @@ public class WaterStream : MonoBehaviour
         Physics.Raycast(ray, out hit, raycastDistance); 
 
         // get the position of the collision location or the end of the raycast
-        Vector3 endPoint = hit.collider ? hit.point : ray.GetPoint(raycastDistance);
+        Vector3 endPoint;
+        if (hit.collider)
+        {
+            endPoint = hit.point;
+
+            // assign currentPlot if the stream is going to hit a plot
+            if (hit.collider.gameObject.CompareTag("Waterable"))
+            {
+                currentPlot = hit.collider.GetComponent<WaterablePlot>();
+            } 
+            else 
+            {
+                currentPlot = null;
+            }
+        }
+        else 
+        {
+            endPoint = ray.GetPoint(raycastDistance);
+            currentPlot = null;
+        }
 
         return endPoint;
     }
@@ -97,16 +148,4 @@ public class WaterStream : MonoBehaviour
         return currentPosition == targetPosition;
     }
 
-    private IEnumerator UpdateParticle()
-    {
-        while (gameObject.activeSelf)
-        {
-            splashParticle.gameObject.transform.position = targetPosition;
-
-            bool isHitting = HasReachedPosition(1, targetPosition);
-            splashParticle.gameObject.SetActive(isHitting);
-
-            yield return null;
-        }
-    }
 }
