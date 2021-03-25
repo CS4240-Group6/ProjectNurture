@@ -8,8 +8,14 @@ public class PourDetector : MonoBehaviour
     public Transform spout = null;
     public GameObject streamPrefab = null;
 
+    private AudioSource pouringSoundEffect = null;
     private bool isPouring = false;
     private WaterStream currentStream = null;
+
+    void Start()
+    {
+        pouringSoundEffect = GetComponent<AudioSource>();
+    }
 
     void Update()
     {
@@ -34,12 +40,14 @@ public class PourDetector : MonoBehaviour
     {
         currentStream = CreateStream();
         currentStream.Begin();
+        pouringSoundEffect.Play();
     }
 
     private void EndPour()
     {
         currentStream.End();
         currentStream = null;
+        pouringSoundEffect.Stop();
     }
 
     private float CalculatePourAngle()
