@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Spade
   - TomatoSeedBag
+  - SoilCollider
   layers:
   - Default
   - TransparentFX
@@ -13,7 +14,7 @@ TagManager:
   - 
   - Water
   - UI
-  - 
+  - Soil
   - 
   - 
   - 
