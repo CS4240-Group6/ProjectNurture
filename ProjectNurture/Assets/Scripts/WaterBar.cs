@@ -5,15 +5,33 @@ using UnityEngine.UI;
 
 public class WaterBar : MonoBehaviour
 {
-    public Slider slider;
+    public Slider progressSlider;
+    public GameObject goalSliderContainer;
+    private Slider goalSlider;
+
+    private float componentHeight;
+
+    private void Start()
+    {
+        goalSlider = goalSliderContainer.GetComponent<Slider>();
+    }
 
     // change the max amt of water required and reset the slider to 0
-    public void SetMaxWaterLevel(int maxWater) {
-        slider.maxValue = maxWater;
-        slider.value = 0;
+    // change the goal level as well
+    public void SetMaxWaterLevel(int maxWater, int newGoal) {
+        progressSlider.maxValue = maxWater;
+        goalSlider.maxValue = maxWater;
+        progressSlider.value = 0;
+
+        goalSlider.maxValue = maxWater;
+        goalSlider.value = newGoal;
     }
 
     public void SetWaterLevel(int waterLevel) {
-        slider.value = waterLevel;
-    } 
+        progressSlider.value = waterLevel;
+    }
+
+    public void SetGoalLevel(int goalLevel) {
+        goalSlider.value = goalLevel;
+    }
 }
