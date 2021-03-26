@@ -11,7 +11,7 @@ public class WaterBar : MonoBehaviour
 
     private float componentHeight;
 
-    private void Start()
+    private void Awake()
     {
         goalSlider = goalSliderContainer.GetComponent<Slider>();
     }

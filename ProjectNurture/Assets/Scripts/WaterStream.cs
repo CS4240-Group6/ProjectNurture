@@ -73,7 +73,8 @@ public class WaterStream : MonoBehaviour
         while(!HasReachedPosition(0, targetPosition))
         {
             bool isHitting = HasReachedPosition(1, targetPosition);
-            // increment water if the stream has collided onto something, and currentPlot exists 
+            // increment water if the stream has collided onto something, and currentPlot exists
+          
             if (isHitting && currentPlot != null)
             {
                 currentPlot.AddWater(1);

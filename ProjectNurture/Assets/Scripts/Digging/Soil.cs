@@ -99,4 +99,9 @@ public class Soil : MonoBehaviour
 	{
 		this.hasSoil = boolean;
 	}
+
+	public void setSoilMaterial(Color newColor)
+    {
+		this.gameObject.GetComponent<Renderer>().material.SetColor("_Color", newColor);
+    }
 }

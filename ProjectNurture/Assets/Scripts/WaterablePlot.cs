@@ -28,11 +28,18 @@ public class WaterablePlot : MonoBehaviour
     private bool isTransitioningToNextStage = false;
     private Coroutine nextStageRoutine = null;
 
-    private void Start()
+    private Soil soilMound;
+
+    private void Awake()
     {
         soundController = GetComponent<SoundController>();
         plantStageController = GetComponent<PlantStageController>();
+        soilMound = this.gameObject.transform.GetChild(1).GetComponent<Soil>(); // Get script of soil mound
+    }
 
+
+    private void Start()
+    {
         canvas.SetActive(isCanvasVisible);
         
         waterBar.SetMaxWaterLevel(waterLevelMax, waterLevelGoal);
@@ -137,6 +144,7 @@ public class WaterablePlot : MonoBehaviour
         Color newColor = Color.Lerp(soilMaterials[0].color, soilMaterials[1].color, ratio);
 
         gameObject.GetComponent<Renderer>().material.SetColor("_Color", newColor);
+        soilMound.setSoilMaterial(newColor);
     }
 
 }
