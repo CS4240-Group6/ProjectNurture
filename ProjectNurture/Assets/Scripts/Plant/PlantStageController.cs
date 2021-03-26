@@ -9,7 +9,8 @@ public class PlantStageController : MonoBehaviour
 	public AudioClip newStageSoundEffect = null;
 	public int currentStageIndex = 0;
 
-	public float nextStageWaitDelay = 10f;
+	public float nextStageWaitDelay = 3f;
+	public float witherTime = 20f; // player needs to reach the water level goal before this time
 
 	public Material deadPlantMaterial = null;
 
@@ -26,7 +27,7 @@ public class PlantStageController : MonoBehaviour
 	private bool isSeedCovered = true;
 
 	private float destroyAnimationTime = 5f;
-	private float witherTime = 10f;
+	private float witheredPlantDropSpeed = 5f;
 
 	private int minWitherIndex = 1;
 	private int maxWitherIndex = 4;
@@ -46,7 +47,6 @@ public class PlantStageController : MonoBehaviour
 	{
 		if (hasSeed && isSeedCovered && isWatered && nextStageRoutine == null)
 		{
-			Debug.Log("starting coroutine");
 			nextStageRoutine = StartCoroutine(StartNextStage());
 		}
 	}
@@ -75,15 +75,72 @@ public class PlantStageController : MonoBehaviour
 		return isSeedCovered;
 	}
 
+	// plant dies if it does not receive enough water in time
+	private IEnumerator StartWitherTimer()
+	{
+		bool isTimerOngoing = true;
+		while (isTimerOngoing)
+		{
+			yield return new WaitForSeconds(witherTime);
+
+			ResetStage();
+			isTimerOngoing = false;
+		}
+	}
+
 	public void ResetStage()
 	{
-		StartCoroutine(StartKillPlantAnimation());
-
-		Debug.Log("stopping next stage coroutine");
-
 		if (nextStageRoutine != null)
 		{
 			StopCoroutine(nextStageRoutine);
+			nextStageRoutine = null;
+		}
+
+		StartCoroutine(StartKillPlantAnimation());
+	}
+
+	private IEnumerator StartKillPlantAnimation()
+	{
+		bool isAnimationOngoing = true;
+		while (isAnimationOngoing)
+		{
+			waterablePlot.ResetWater();
+			isWatered = false;
+
+			// if currentStage is rendered on the screen, change its colour and move it downwards
+			Renderer renderer = currentStage.GetComponent<Renderer>();
+			if (renderer != null)
+			{
+				Material[] newMaterials = new Material[renderer.materials.Length];
+				for (var i = 0; i < renderer.materials.Length; i++)
+                {
+					newMaterials[i] = deadPlantMaterial;
+                }
+				renderer.materials = newMaterials;
+
+				currentStage.GetComponent<Rigidbody>().velocity = new Vector3(0, -1) * witheredPlantDropSpeed;
+			}
+
+			yield return new WaitForSeconds(destroyAnimationTime);
+
+			SetCurrentStage(0, true);
+
+			hasSeed = false;
+			isSeedCovered = false;
+			isAnimationOngoing = false;
+		}
+	}
+
+	private IEnumerator StartNextStage()
+	{
+		bool isTransitioningToNextStage = true;
+		while (isTransitioningToNextStage)
+		{
+			yield return new WaitForSeconds(nextStageWaitDelay);
+
+			NextStage();
+
+			isTransitioningToNextStage = false;
 			nextStageRoutine = null;
 		}
 	}
@@ -93,59 +150,6 @@ public class PlantStageController : MonoBehaviour
 		if (currentStageIndex < plantStages.Length)
 		{
 			SetCurrentStage(currentStageIndex + 1, true);
-		}
-	}
-
-	private IEnumerator StartNextStage()
-	{
-		bool isTransitioningToNextStage = true;
-		while (isTransitioningToNextStage)
-		{
-			Debug.Log("coroutine started");
-			yield return new WaitForSeconds(nextStageWaitDelay);
-
-			Debug.Log("coroutine triggers next stage");
-			NextStage();
-
-			isTransitioningToNextStage = false;
-			nextStageRoutine = null;
-		}
-	}
-
-	private IEnumerator StartKillPlantAnimation()
-	{
-		bool isAnimationOngoing = true;
-		while (isAnimationOngoing)
-		{
-			Material[] materials = currentStage.GetComponent<MeshRenderer>().materials;
-			for (int i = 0; i < materials.Length; i++)
-			{
-				currentStage.GetComponent<MeshRenderer>().materials[i] = deadPlantMaterial;
-			}
-
-			currentStage.GetComponent<Rigidbody>().useGravity = true;
-			yield return new WaitForSeconds(destroyAnimationTime);
-			SetCurrentStage(0, true);
-
-			hasSeed = false;
-			isSeedCovered = false;
-			isAnimationOngoing = false;
-		}
-	}
-
-	// plant dies if it does not receive enough water in time
-	private IEnumerator StartWitherTimer()
-	{
-		Debug.Log("wither coroutine started");
-		bool isTimerOngoing = true;
-		while (isTimerOngoing)
-		{
-			yield return new WaitForSeconds(witherTime);
-
-			Debug.Log("resetting...");
-
-			ResetStage();
-			isTimerOngoing = false;
 		}
 	}
 
@@ -173,7 +177,7 @@ public class PlantStageController : MonoBehaviour
 			witherTimerRoutine = null;
 		}
 
-		if (index >= minWitherIndex || index <= maxWitherIndex)
+		if (index >= minWitherIndex && index <= maxWitherIndex)
 		{
 			witherTimerRoutine = StartCoroutine(StartWitherTimer());
 		}

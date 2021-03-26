@@ -8,7 +8,7 @@ public class WaterablePlot : MonoBehaviour
     public int waterLevelMax = 10;
     public int waterLevelGoal = 7;
     public int waterLevelBuffer = 2; // if player waters more than goal + buffer, plant dies
-    public float waterEvaporationPeriod = 30f; // water level is reduced by 1 every 30s
+    public float waterEvaporationPeriod = 60f; // water level is reduced by 1 every 60s
 
     public bool isCanvasVisible = true;
     public GameObject canvas = null;
