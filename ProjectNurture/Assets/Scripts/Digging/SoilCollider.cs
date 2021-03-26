@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class SoilCollider : MonoBehaviour
 {
 	// Debug
-	public Text debug_text;
+	// public Text debug_text;
 
 	// Variables for soil audio
 	public AudioClip dig_enter;
@@ -30,17 +30,17 @@ public class SoilCollider : MonoBehaviour
 		dig_leave_source.clip = dig_leave;
 	}
 
-	// Update is called once per frame
 	void Update()
 	{
+		// Check collider if there is seeds/soil going through it, then set boolean accordingly
 		if (Input.GetKey("s"))
         {
-			SM_Soil.setHasSeeds(true);
+			SM_Soil.SetHasSeed(true);
         }
 
 		if (Input.GetKey("d"))
         {
-			SM_Soil.setHasSoil(true);
+			SM_Soil.SetIsSeedCovered(true);
         }
 	}
 
@@ -48,23 +48,34 @@ public class SoilCollider : MonoBehaviour
 	{
 		if (collider.transform.gameObject.CompareTag("Spade"))
 		{
-			debug_text.text = "Spade entering collider";
+			// debug_text.text = "Spade entering collider";
 			dig_enter_source.Play();
 		}
-		
+
+		// If the seeds hit the collider, means there are seeds inside the hole
+		if (collider.transform.gameObject.CompareTag("Seed"))
+		{
+			SM_Soil.SetHasSeed(true);
+		}
+
+		// If the soil hit the collider, means the seed is covered
+		if (collider.transform.gameObject.CompareTag("Soil"))
+		{
+			SM_Soil.SetIsSeedCovered(true);
+		}
 	}
 
 	private void OnTriggerExit(Collider collider)
 	{
 		if (collider.transform.gameObject.CompareTag("Spade"))
 		{
-			debug_text.text = "Spade leaving collider";
+			// debug_text.text = "Spade leaving collider";
 
 			// TODO: Debug why unable to transition to intermediate state
 			if (SM_Soil.getDiggingState() == 0f)
 			{
 				dig_leave_source.Play();
-				debug_text.text = "Soil level from 0f going to 0.5f";
+				// debug_text.text = "Soil level from 0f going to 0.5f";
 				SM_Soil.ChangeSoilIntermediate();
 				return;
 			}
@@ -73,18 +84,12 @@ public class SoilCollider : MonoBehaviour
 			if (SM_Soil.getDiggingState() == 0.5f)
 			{
 				dig_leave_source.Play();
-				debug_text.text = "Soil level from 0.5f going to 1f";
+				// debug_text.text = "Soil level from 0.5f going to 1f";
 				SM_Soil.ChangeSoilHole();
 				return;
 			}
 
 			return;
 		}
-
-		// If the seeds hit the collider, means there are seeds inside the hole
-		if (collider.transform.gameObject.CompareTag("Seed"))
-        {
-			SM_Soil.setHasSeeds(true);
-        }
 	}
 }

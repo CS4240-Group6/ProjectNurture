@@ -105,7 +105,7 @@ MeshCollider:
   serializedVersion: 4
   m_Convex: 1
   m_CookingOptions: 30
-  m_Mesh: {fileID: -6943806787548425679, guid: 878dc4504e2ab0e44b2060c2f6e79b0b, type: 3}
+  m_Mesh: {fileID: -6943806787548425679, guid: cc8341202ac331540bc8170fe50a1c3f, type: 3}
 --- !u!114 &7419295689241317240
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -123,8 +123,7 @@ MonoBehaviour:
     type: 3}
   hole_100: {fileID: -6943806787548425679, guid: cc8341202ac331540bc8170fe50a1c3f,
     type: 3}
-  hasSeeds: 0
-  hasSoil: 0
+  controller: {fileID: 0}
 --- !u!222 &7962048612830377120
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -204,7 +203,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b0ba25ca2f557a84aa7921070e5e2594, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  debug_text: {fileID: 0}
   dig_enter: {fileID: 8300000, guid: a5890c10d4a210a44be62e092442bf50, type: 3}
   dig_leave: {fileID: 8300000, guid: 12ec5ba0921ecf74290d52a3cc44f17e, type: 3}
 --- !u!1 &2708725729565597588

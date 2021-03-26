@@ -12,16 +12,19 @@ public class Soil : MonoBehaviour
     // Variables for managing state of soil clod
 	private float digging_state = 0;
 	private string plant = "NO_PLANT";
-	public bool hasSeeds = false;  // Check if seeds are in the hole of the clod
-	public bool hasSoil = false;
 
 	private GameObject ui_popup_seeds;
 	private GameObject ui_popup_soil;
+
+	public PlantStageController controller;
 
 	// Start is called before the first frame update
 	void Start()
 	{
         digging_state = 0;
+
+		// Get PlantController from plot
+		controller = this.gameObject.GetComponentInParent<PlantStageController>();
 
 		// Get original mesh
 		hole_0 = this.gameObject.GetComponent<MeshFilter>().mesh;
@@ -41,12 +44,12 @@ public class Soil : MonoBehaviour
 		{
 			ui_popup_seeds.SetActive(true);
 
-			if (hasSeeds)
+			if (controller.GetHasSeed())
             {
 				ui_popup_seeds.SetActive(false);
 				ui_popup_soil.SetActive(true);
 
-				if (hasSoil)
+				if (controller.GetIsSeedCovered())
                 {
 					ui_popup_soil.SetActive(false);
 					fillHole();
@@ -60,7 +63,6 @@ public class Soil : MonoBehaviour
 		digging_state = 0.5f;
 
 		this.gameObject.GetComponent<MeshFilter>().mesh = hole_50;
-		
     }
 
 	public void ChangeSoilHole()
@@ -68,7 +70,7 @@ public class Soil : MonoBehaviour
 		digging_state = 1.0f;
 
 		this.gameObject.GetComponent<MeshFilter>().mesh = hole_100;
-
+		this.gameObject.GetComponent<MeshCollider>().isTrigger = false;
 	}
 
 	public void fillHole()
@@ -90,18 +92,18 @@ public class Soil : MonoBehaviour
 		return this.digging_state;
     }
 
-	public void setHasSeeds(bool boolean)
-    {
-		this.hasSeeds = boolean;
-    }
-
-	public void setHasSoil(bool boolean)
-	{
-		this.hasSoil = boolean;
-	}
-
 	public void setSoilMaterial(Color newColor)
     {
 		this.gameObject.GetComponent<Renderer>().material.SetColor("_Color", newColor);
+    }
+
+	public void SetHasSeed(bool boolean)
+    {
+		controller.SetHasSeed(boolean);
+    }
+
+	public void SetIsSeedCovered(bool boolean)
+    {
+		controller.SetIsSeedCovered(boolean);
     }
 }

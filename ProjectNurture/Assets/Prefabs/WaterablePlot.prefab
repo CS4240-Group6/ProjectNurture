@@ -385,7 +385,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 400998794649f4bd58a5a4aade248734, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 0}
+  camera: {fileID: 0}
 --- !u!1 &1720498154777501320
 GameObject:
   m_ObjectHideFlags: 0
@@ -864,7 +864,6 @@ MonoBehaviour:
   waterLevelGoal: 6
   waterLevelBuffer: 3
   waterEvaporationPeriod: 30
-  nextStageWaitDelay: 10
   isCanvasVisible: 1
   canvas: {fileID: 1720498154588679831}
   waterBar: {fileID: 1720498155015783938}
@@ -996,12 +995,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spawnLocation: {fileID: 337120303394231538}
   plantStages:
-  - {fileID: 294673873069120765, guid: d8ba3821bbd104abc991a291b8934ce1, type: 3}
-  - {fileID: 1261134927141026, guid: 9bf2c79eafa22814a8bd2e6b64647e20, type: 3}
+  - {fileID: 0}
+  - {fileID: 3677901936260695687, guid: 735b5d0e92960c447b4eb1c8abc04860, type: 3}
   newStageSoundEffect: {fileID: 8300000, guid: 5b523f1adc38846ae8fed608b35af0e3, type: 3}
-  newStageDelay: 3
   currentStageIndex: 0
-  modelScaleFactor: {x: 2, y: 2, z: 2}
+  nextStageWaitDelay: 10
+  deadPlantMaterial: {fileID: 2100000, guid: 2a57dd5bdb0e88f438b1421781dcabc9, type: 2}
 --- !u!1 &5273984608607102151
 GameObject:
   m_ObjectHideFlags: 0

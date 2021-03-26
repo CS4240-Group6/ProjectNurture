@@ -10,8 +10,6 @@ public class WaterablePlot : MonoBehaviour
     public int waterLevelBuffer = 2; // if player waters more than goal + buffer, plant dies
     public float waterEvaporationPeriod = 30f; // water level is reduced by 1 every 30s
 
-    public float nextStageWaitDelay = 10f;
-
     public bool isCanvasVisible = true;
     public GameObject canvas = null;
     public WaterBar waterBar = null;
@@ -25,9 +23,6 @@ public class WaterablePlot : MonoBehaviour
 
     private SoundController soundController = null;
     private PlantStageController plantStageController = null;
-    private bool isTransitioningToNextStage = false;
-    private Coroutine nextStageRoutine = null;
-
     private Soil soilMound;
 
     private void Awake()
@@ -53,11 +48,11 @@ public class WaterablePlot : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
-            SetIsWaterBarVisible(!isCanvasVisible);
+            SetIsWaterCanvasVisible(!isCanvasVisible);
         }
     }
 
-    private void SetIsWaterBarVisible(bool val)
+    public void SetIsWaterCanvasVisible(bool val)
     {
         isCanvasVisible = val;
         canvas.SetActive(val);
@@ -75,6 +70,12 @@ public class WaterablePlot : MonoBehaviour
             yield return new WaitForSeconds(waterEvaporationPeriod);
         }
     }
+    public void ResetWater()
+    {
+        waterLevelCurrent = 0;
+        waterBar.SetWaterLevel(waterLevelCurrent);
+        UpdateSoilMaterial();
+    }
 
     public void AddWater(int amount)
     {
@@ -85,23 +86,17 @@ public class WaterablePlot : MonoBehaviour
 
             if (waterLevelCurrent == waterLevelGoal)
             {
-                soundController.PlayAudio(successSoundEffect);
-                isTransitioningToNextStage = true;
-                nextStageRoutine = StartCoroutine(StartNextStage());
+                WaterSuccess();
             }
 
             if (waterLevelCurrent > waterLevelGoal)
             {
-                soundController.PlayAudio(warningSoundEffect);
-                crossIcon.SetActive(true);
+                WaterWarning();
             }
 
             if (waterLevelCurrent > waterLevelGoal + waterLevelBuffer)
             {
-                // destroy plant, reset stage
-                plantStageController.ResetStage();
-                ResetWater();
-                StopCoroutine(nextStageRoutine);
+                WaterFail();
             }
 
             UpdateSoilMaterial();
@@ -109,11 +104,20 @@ public class WaterablePlot : MonoBehaviour
 
     }
 
-    private void ResetWater()
+    private void WaterSuccess()
     {
-        waterLevelCurrent = 0;
-        waterBar.SetWaterLevel(waterLevelCurrent);
-        UpdateSoilMaterial();
+        soundController.PlayAudio(successSoundEffect);
+        plantStageController.SetIsWatered(true);
+    }
+
+    private void WaterWarning()
+    {
+        soundController.PlayAudio(warningSoundEffect);
+        crossIcon.SetActive(true);
+    }
+    private void WaterFail()
+    {
+        plantStageController.ResetStage();
     }
 
     private void ReduceWater(int amount)
@@ -126,18 +130,6 @@ public class WaterablePlot : MonoBehaviour
         }
     }
 
-    private IEnumerator StartNextStage()
-    {
-        while (isTransitioningToNextStage)
-        {
-            yield return new WaitForSeconds(nextStageWaitDelay);
-            plantStageController.NextStage();
-            ResetWater();
-            isTransitioningToNextStage = false;
-            nextStageRoutine = null;
-        }
-    }
-
     private void UpdateSoilMaterial()
     {
         float ratio = waterLevelCurrent / (float) waterLevelMax;
@@ -146,5 +138,4 @@ public class WaterablePlot : MonoBehaviour
         gameObject.GetComponent<Renderer>().material.SetColor("_Color", newColor);
         soilMound.setSoilMaterial(newColor);
     }
-
 }
