@@ -140,6 +140,7 @@ MonoBehaviour:
   parentOnGrab: 1
   lockHandOnGrab: 0
   maintainGrabOffset: 0
+  ignoreReleaseTime: 0.25
   hightlightMaterial: {fileID: 0}
   pullApartBreakOnly: 1
   makeChildrenGrabbable: 1
