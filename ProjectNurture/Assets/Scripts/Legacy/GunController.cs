@@ -28,10 +28,10 @@ public class GunController : MonoBehaviour
     void Update()
     {
         // restart level
-        if (Input.GetAxis(resetGameButtonName) == 1)
+        /* if (Input.GetAxis(resetGameButtonName) == 1)
         {
             Application.LoadLevel(0);
-        }
+        }*/
 
         // either grab or shoot object
         if (Input.GetKeyDown(KeyCode.S) || Input.GetButtonDown(actionButtonName))
