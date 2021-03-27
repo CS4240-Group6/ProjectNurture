@@ -17,11 +17,10 @@ public class PlantScript : MonoBehaviour
 
     private GameObject currentPrefab;
     private int currentIndex = 0;
-    private PlantStageController controller;
+    private bool isCurrentPlantBeingKilled = false;
     private AudioSource audioSource;
 
     private float killPlantAnimationTotalTime = 3f;
-    private float killPlantAnimationDropSpeed = 5f;
 
 
     /**
@@ -32,12 +31,6 @@ public class PlantScript : MonoBehaviour
     private void Awake()
     {
         audioSource = GetComponent<AudioSource>();
-    }
-
-    private void Start()
-    {
-        // Get PlantController
-        controller = gameObject.GetComponentInParent<PlantStageController>();
     }
 
     public int GetPreferredWaterLevel()
@@ -52,21 +45,27 @@ public class PlantScript : MonoBehaviour
 
     public void NextStage()
     {
-        if (currentIndex == 0)
+        // prevent going to the next stage if the kill plant animation is ongoing
+        if (!isCurrentPlantBeingKilled)
         {
-            // disable seed mesh
-            transform.GetChild(0).gameObject.SetActive(false);
-        }
+            if (currentIndex == 0)
+            {
+                // disable seed mesh
+                transform.GetChild(0).gameObject.SetActive(false);
+            }
 
-        PlayAudio(nextStageSoundEffect);
-        SetPrefab(currentIndex + 1);
+            PlayAudio(nextStageSoundEffect);
+            SetPrefab(currentIndex + 1);
+        }
     }
 
     public void KillPlant()
     {
+        isCurrentPlantBeingKilled = true;
         if (currentIndex == 0)
         {
-            DestroyPlant();
+            PlayAudio(deadPlantSoundEffect);
+            Destroy(gameObject);
         } 
         else
         {
@@ -79,8 +78,6 @@ public class PlantScript : MonoBehaviour
         while (gameObject.activeSelf)
         {
             // change plant colour
-            //Component[] renderers = currentPrefab.GetComponentsInChildren(typeof(Renderer));
-
             foreach (Transform child in currentPrefab.transform)
             {
                 Renderer renderer = child.GetComponent<Renderer>(); 
@@ -93,18 +90,15 @@ public class PlantScript : MonoBehaviour
                 renderer.materials = newMaterials;
 
             }
+
             // move plant downwards to imitate plant collapsing
-            currentPrefab.GetComponent<Rigidbody>().velocity = new Vector3(0, -1) * killPlantAnimationDropSpeed;
+            currentPrefab.GetComponent<Rigidbody>().isKinematic = false;
+
+            PlayAudio(deadPlantSoundEffect);
 
             yield return new WaitForSeconds(killPlantAnimationTotalTime);
-            DestroyPlant();
+            Destroy(gameObject);
         }
-    }
-
-    private void DestroyPlant()
-    {
-        PlayAudio(deadPlantSoundEffect);
-        Destroy(gameObject);
     }
 
     public bool IsNextStagePresent()

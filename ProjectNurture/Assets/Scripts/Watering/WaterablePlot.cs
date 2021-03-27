@@ -4,42 +4,44 @@ using UnityEngine;
 
 public class WaterablePlot : MonoBehaviour
 {
-    public int waterLevelCurrent = 0;
-    public int waterLevelMax = 10;
-    public int waterLevelGoal = 7;
     public int waterLevelBuffer = 2; // if player waters more than goal + buffer, plant dies
     public float waterEvaporationPeriod = 60f; // water level is reduced by 1 every 60s
 
-    public bool isCanvasVisible = false;
-    public GameObject canvas = null;
-    public WaterBar waterBar = null;
-    public GameObject crossIcon = null;
+    public GameObject waterBar;
+    public GameObject crossIcon;
 
-    public AudioClip successSoundEffect = null;
-    public AudioClip warningSoundEffect = null;
+    public AudioClip successSoundEffect;
+    public AudioClip warningSoundEffect;
 
     // index 0 contains the dry soil material, index 1 contains the wet soil material
     public Material[] soilMaterials;
 
-    private SoundController soundController = null;
-    private PlantStageController plantStageController = null;
+    private int waterLevelCurrent = 0;
+    private int waterLevelMax = 10;
+    private int waterLevelGoal = 0;
+
+    private WaterBar waterBarScript;
+    private SoundController soundController;
+    private PlantStageController plantStageController;
     private Soil soilMound;
+
     private bool isPlotWaterable = false;
 
     private void Awake()
     {
         soundController = GetComponent<SoundController>();
         plantStageController = GetComponent<PlantStageController>();
-        soilMound = this.gameObject.transform.GetChild(1).GetComponent<Soil>(); // Get script of soil mound
+        soilMound = gameObject.transform.GetChild(1).GetComponent<Soil>(); // Get script of soil mound
+        waterBarScript = waterBar.GetComponent<WaterBar>();
     }
 
     private void Start()
     {
-        canvas.SetActive(isCanvasVisible);
-        
-        waterBar.SetMaxWaterLevel(waterLevelMax);
-        waterBar.SetWaterGoal(waterLevelGoal);
-        waterBar.SetWaterLevel(waterLevelCurrent);
+        waterBarScript.SetMaxWaterLevel(waterLevelMax);
+        waterBarScript.SetWaterGoal(waterLevelGoal);
+        waterBarScript.SetWaterLevel(waterLevelCurrent);
+
+        SetIsPlotWaterable(isPlotWaterable);
 
         StartCoroutine(ReduceWaterOverTime());
         UpdateSoilMaterial();
@@ -47,32 +49,19 @@ public class WaterablePlot : MonoBehaviour
 
     public void SetIsPlotWaterable(bool val)
     {
-        canvas.SetActive(val);
+        waterBar.SetActive(val);
         isPlotWaterable = val;
     }
 
     public void SetWaterGoal(int goal)
     {
         waterLevelGoal = goal;
-        waterBar.SetWaterGoal(goal);
-    }
-
-    private IEnumerator ReduceWaterOverTime()
-    {
-        while (gameObject.activeSelf)
-        {
-            if (waterLevelCurrent > 0)
-            {
-                ReduceWater(1);
-            }
-
-            yield return new WaitForSeconds(waterEvaporationPeriod);
-        }
+        waterBarScript.SetWaterGoal(goal);
     }
     public void ResetWater()
     {
         waterLevelCurrent = 0;
-        waterBar.SetWaterLevel(waterLevelCurrent);
+        waterBarScript.SetWaterLevel(waterLevelCurrent);
         UpdateSoilMaterial();
     }
 
@@ -81,11 +70,11 @@ public class WaterablePlot : MonoBehaviour
         if (!isPlotWaterable)
         {
             WaterWarning();
-        }    
+        }
         else if (waterLevelCurrent != waterLevelMax)
         {
             waterLevelCurrent += amount;
-            waterBar.SetWaterLevel(waterLevelCurrent);
+            waterBarScript.SetWaterLevel(waterLevelCurrent);
 
             if (waterLevelCurrent == waterLevelGoal)
             {
@@ -105,6 +94,19 @@ public class WaterablePlot : MonoBehaviour
             UpdateSoilMaterial();
         }
 
+    }
+
+    private IEnumerator ReduceWaterOverTime()
+    {
+        while (gameObject.activeSelf)
+        {
+            if (waterLevelCurrent > 0)
+            {
+                ReduceWater(1);
+            }
+
+            yield return new WaitForSeconds(waterEvaporationPeriod);
+        }
     }
 
     private void WaterSuccess()
@@ -128,7 +130,7 @@ public class WaterablePlot : MonoBehaviour
         if (waterLevelCurrent > 0)
         {
             waterLevelCurrent -= amount;
-            waterBar.SetWaterLevel(waterLevelCurrent);
+            waterBarScript.SetWaterLevel(waterLevelCurrent);
             UpdateSoilMaterial();
         }
     }
