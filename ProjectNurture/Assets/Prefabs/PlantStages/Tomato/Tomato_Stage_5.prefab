@@ -28,7 +28,7 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 8343553573227892584}
+  - {fileID: 7248454660612047957}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -48,66 +48,83 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!1001 &8348390438288623846
+--- !u!1001 &1107589257438611698
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
     m_TransformParent: {fileID: 8348390437377399093}
     m_Modifications:
-    - target: {fileID: 1261134927141026, guid: 9bf2c79eafa22814a8bd2e6b64647e20, type: 3}
-      propertyPath: m_Name
-      value: SM_Prop_Plant_Bush_02_Tomato
+    - target: {fileID: 4222636416973719766, guid: 2180598689b26764d8a378e99e2a50f5,
+        type: 3}
+      propertyPath: m_IsKinematic
+      value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4839070543284110, guid: 9bf2c79eafa22814a8bd2e6b64647e20, type: 3}
+    - target: {fileID: 7766841920850267303, guid: 2180598689b26764d8a378e99e2a50f5,
+        type: 3}
       propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4839070543284110, guid: 9bf2c79eafa22814a8bd2e6b64647e20, type: 3}
+    - target: {fileID: 7766841920850267303, guid: 2180598689b26764d8a378e99e2a50f5,
+        type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -0.019
       objectReference: {fileID: 0}
-    - target: {fileID: 4839070543284110, guid: 9bf2c79eafa22814a8bd2e6b64647e20, type: 3}
+    - target: {fileID: 7766841920850267303, guid: 2180598689b26764d8a378e99e2a50f5,
+        type: 3}
       propertyPath: m_LocalPosition.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4839070543284110, guid: 9bf2c79eafa22814a8bd2e6b64647e20, type: 3}
+    - target: {fileID: 7766841920850267303, guid: 2180598689b26764d8a378e99e2a50f5,
+        type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: -0.025
       objectReference: {fileID: 0}
-    - target: {fileID: 4839070543284110, guid: 9bf2c79eafa22814a8bd2e6b64647e20, type: 3}
+    - target: {fileID: 7766841920850267303, guid: 2180598689b26764d8a378e99e2a50f5,
+        type: 3}
       propertyPath: m_LocalRotation.w
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 4839070543284110, guid: 9bf2c79eafa22814a8bd2e6b64647e20, type: 3}
+    - target: {fileID: 7766841920850267303, guid: 2180598689b26764d8a378e99e2a50f5,
+        type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4839070543284110, guid: 9bf2c79eafa22814a8bd2e6b64647e20, type: 3}
+    - target: {fileID: 7766841920850267303, guid: 2180598689b26764d8a378e99e2a50f5,
+        type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4839070543284110, guid: 9bf2c79eafa22814a8bd2e6b64647e20, type: 3}
+    - target: {fileID: 7766841920850267303, guid: 2180598689b26764d8a378e99e2a50f5,
+        type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4839070543284110, guid: 9bf2c79eafa22814a8bd2e6b64647e20, type: 3}
+    - target: {fileID: 7766841920850267303, guid: 2180598689b26764d8a378e99e2a50f5,
+        type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4839070543284110, guid: 9bf2c79eafa22814a8bd2e6b64647e20, type: 3}
+    - target: {fileID: 7766841920850267303, guid: 2180598689b26764d8a378e99e2a50f5,
+        type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4839070543284110, guid: 9bf2c79eafa22814a8bd2e6b64647e20, type: 3}
+    - target: {fileID: 7766841920850267303, guid: 2180598689b26764d8a378e99e2a50f5,
+        type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8820589142519238060, guid: 2180598689b26764d8a378e99e2a50f5,
+        type: 3}
+      propertyPath: m_Name
+      value: LargeTomatoPlant
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 9bf2c79eafa22814a8bd2e6b64647e20, type: 3}
---- !u!4 &8343553573227892584 stripped
+  m_SourcePrefab: {fileID: 100100000, guid: 2180598689b26764d8a378e99e2a50f5, type: 3}
+--- !u!4 &7248454660612047957 stripped
 Transform:
-  m_CorrespondingSourceObject: {fileID: 4839070543284110, guid: 9bf2c79eafa22814a8bd2e6b64647e20,
+  m_CorrespondingSourceObject: {fileID: 7766841920850267303, guid: 2180598689b26764d8a378e99e2a50f5,
     type: 3}
-  m_PrefabInstance: {fileID: 8348390438288623846}
+  m_PrefabInstance: {fileID: 1107589257438611698}
   m_PrefabAsset: {fileID: 0}

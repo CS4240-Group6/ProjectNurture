@@ -32,16 +32,7 @@ public class SpadeCollider : MonoBehaviour
 
 	void Update()
 	{
-		// Check collider if there is seeds/soil going through it, then set boolean accordingly
-		if (Input.GetKey("s"))
-        {
-			SM_Soil.SetHasSeed(true);
-        }
-
-		if (Input.GetKey("d"))
-        {
-			SM_Soil.SetIsSeedCovered(true);
-        }
+		
 	}
 
 	private void OnTriggerEnter(Collider collider)
@@ -50,13 +41,18 @@ public class SpadeCollider : MonoBehaviour
 		{
 			// debug_text.text = "Spade entering collider";
 			dig_enter_source.Play();
+
+			if (SM_Soil.GetHasSeed())
+            {
+				SM_Soil.SetIsSeedCovered(true);
+            }
 		}
 
-		// If the soil hit the collider, means the seed is covered
+		/* If the soil hit the collider, means the seed is covered
 		if (collider.transform.gameObject.CompareTag("Soil"))
 		{
 			SM_Soil.SetIsSeedCovered(true);
-		}
+		}*/
 	}
 
 	private void OnTriggerExit(Collider collider)

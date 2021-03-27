@@ -15,6 +15,8 @@ public class PlantScript : MonoBehaviour
 
     public Material deadPlantMaterial;
 
+    public Sprite ui_popup = null;
+
     private GameObject currentPrefab;
     private int currentIndex = 0;
     private bool isCurrentPlantBeingKilled = false;
@@ -138,5 +140,10 @@ public class PlantScript : MonoBehaviour
     {
         audioSource.clip = c;
         audioSource.Play();
+    }
+
+    public Sprite GetUISprite()
+    {
+        return ui_popup;
     }
 }

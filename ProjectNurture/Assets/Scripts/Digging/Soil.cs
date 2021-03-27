@@ -15,8 +15,10 @@ public class Soil : MonoBehaviour
 
 	private GameObject ui_popup_seeds;
 	private GameObject ui_popup_soil;
+	private GameObject ui_popup_plant;
 
 	public PlantStageController controller;
+	private PlantScript plantScript;
 
 	// Start is called before the first frame update
 	void Start()
@@ -35,6 +37,9 @@ public class Soil : MonoBehaviour
 
 		ui_popup_soil = this.gameObject.transform.GetChild(1).gameObject;
 		ui_popup_soil.SetActive(false);
+
+        ui_popup_plant = this.gameObject.transform.GetChild(2).gameObject;
+		ui_popup_plant.SetActive(false);
 	}
 
 	void Update()
@@ -52,6 +57,8 @@ public class Soil : MonoBehaviour
 				if (controller.GetIsSeedCovered())
 				{
 					ui_popup_soil.SetActive(false);
+					ui_popup_plant.GetComponent<SpriteRenderer>().sprite = plantScript.GetUISprite();
+					ui_popup_plant.SetActive(true);
 					fillHole();
 				}
 			}
@@ -109,7 +116,13 @@ public class Soil : MonoBehaviour
 
 	public void SetPlant(PlantScript plantScript)
     {
+		this.plantScript = plantScript;
 		controller.SetCurrentPlant(plantScript);
+    }
+
+	public bool GetHasSeed()
+    {
+		return controller.GetHasSeed();
     }
 
 }
