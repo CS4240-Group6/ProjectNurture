@@ -31,7 +31,8 @@ public class OnButtonSelectScript : MonoBehaviour
         DestroyAll();
 
         GameObject clone;
-
+        GameObject reference = btn.transform.GetChild(1).gameObject;
+        
         if (btn != null) {
             if (btn.name == "dig_button")
             {
