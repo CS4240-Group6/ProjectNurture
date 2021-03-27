@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 8961510248649913920}
   - component: {fileID: 839733611}
   - component: {fileID: 839733610}
-  m_Layer: 27
+  m_Layer: 22
   m_Name: Finger Benders
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -5,8 +5,10 @@ TagManager:
   serializedVersion: 2
   tags:
   - Spade
-  - TomatoSeedBag
-  - SoilCollider
+  - Waterable
+  - Water
+  - Seed
+  - Soil
   layers:
   - Default
   - TransparentFX
@@ -14,7 +16,7 @@ TagManager:
   - 
   - Water
   - UI
-  - Soil
+  - 
   - 
   - 
   - 
