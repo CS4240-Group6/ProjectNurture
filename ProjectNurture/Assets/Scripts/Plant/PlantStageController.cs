@@ -23,8 +23,8 @@ public class PlantStageController : MonoBehaviour
 	private Coroutine witherTimerRoutine = null;
 
 	private bool isWatered = false;
-	private bool hasSeed = true;
-	private bool isSeedCovered = true;
+	private bool hasSeed = false;
+	private bool isSeedCovered = false;
 
 	private float destroyAnimationTime = 5f;
 	private float witheredPlantDropSpeed = 5f;
@@ -123,7 +123,14 @@ public class PlantStageController : MonoBehaviour
 
 			yield return new WaitForSeconds(destroyAnimationTime);
 
-			SetCurrentStage(0, true);
+			//if (renderer != null)
+            //{
+			//	SetCurrentStage(0, false);
+			//} 
+			//else 
+			//{
+				SetCurrentStage(0, true);
+			//}
 
 			hasSeed = false;
 			isSeedCovered = false;
