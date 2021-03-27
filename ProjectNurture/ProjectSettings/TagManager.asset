@@ -9,7 +9,6 @@ TagManager:
   - Water
   - Seed
   - Soil
-  - Tomato_Seed
   layers:
   - Default
   - TransparentFX

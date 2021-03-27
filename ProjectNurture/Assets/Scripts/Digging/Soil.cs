@@ -9,7 +9,7 @@ public class Soil : MonoBehaviour
 	public Mesh hole_50;
 	public Mesh hole_100;
 
-    // Variables for managing state of soil clod
+	// Variables for managing state of soil clod
 	private float digging_state = 0;
 	private GameObject plant;
 
@@ -21,7 +21,7 @@ public class Soil : MonoBehaviour
 	// Start is called before the first frame update
 	void Start()
 	{
-        digging_state = 0;
+		digging_state = 0;
 
 		// Get PlantController from plot
 		controller = this.gameObject.GetComponentInParent<PlantStageController>();
@@ -31,7 +31,7 @@ public class Soil : MonoBehaviour
 
 		// Set UI stuff to invisible first
 		ui_popup_seeds = this.gameObject.transform.GetChild(0).gameObject;
-        ui_popup_seeds.SetActive(false);
+		ui_popup_seeds.SetActive(false);
 
 		ui_popup_soil = this.gameObject.transform.GetChild(1).gameObject;
 		ui_popup_soil.SetActive(false);
@@ -45,28 +45,28 @@ public class Soil : MonoBehaviour
 			ui_popup_seeds.SetActive(true);
 
 			if (controller.GetHasSeed())
-            {
+			{
 				ui_popup_seeds.SetActive(false);
 				ui_popup_soil.SetActive(true);
 
 				if (controller.GetIsSeedCovered())
-                {
+				{
 					ui_popup_soil.SetActive(false);
 					fillHole();
-                }
-            }
+				}
+			}
 		}
 	}
 
 	public void ChangeSoilIntermediate()
-    {
+	{
 		digging_state = 0.5f;
 
 		this.gameObject.GetComponent<MeshFilter>().mesh = hole_50;
-    }
+	}
 
 	public void ChangeSoilHole()
-    {
+	{
 		digging_state = 1.0f;
 
 		this.gameObject.GetComponent<MeshFilter>().mesh = hole_100;
@@ -74,7 +74,7 @@ public class Soil : MonoBehaviour
 	}
 
 	public void fillHole()
-    {
+	{
 		digging_state = 0f;
 
 		this.gameObject.GetComponent<MeshFilter>().mesh = hole_0;
@@ -82,39 +82,35 @@ public class Soil : MonoBehaviour
 		// Disable digging on the soil if the seed is inside and hole already covered
 		// this.gameObject.GetComponent<MeshCollider>().isTrigger = false;
 		this.gameObject.GetComponent<MeshCollider>().enabled = false;
-    }
+	}
 
 	/**
 	 *	API for SoilCollider script
 	 */
 
 	public float getDiggingState()
-    {
+	{
 		return this.digging_state;
-    }
+	}
 
 	public void setSoilMaterial(Color newColor)
-    {
+	{
 		this.gameObject.GetComponent<Renderer>().material.SetColor("_Color", newColor);
-    }
+	}
 
 	public void SetHasSeed(bool boolean)
-    {
+	{
 		controller.SetHasSeed(boolean);
-    }
+	}
 
 	public void SetIsSeedCovered(bool boolean)
-    {
+	{
 		controller.SetIsSeedCovered(boolean);
-    }
+	}
 
 	public void SetPlant(GameObject seed)
     {
-		this.plant = seed;
+		controller.SetCurrentPlant(seed);
     }
 
-	public GameObject GetPlant()
-    {
-		return this.plant;
-    }
 }

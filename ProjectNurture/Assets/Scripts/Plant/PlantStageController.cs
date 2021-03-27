@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlantStageController : MonoBehaviour
 {
@@ -8,6 +9,10 @@ public class PlantStageController : MonoBehaviour
 	public GameObject[] plantStages = null;
 	public AudioClip newStageSoundEffect = null;
 	public int currentStageIndex = 0;
+
+
+	public GameObject TEMP_DEBUG;
+	private Text TEMP_TEXT;
 
 	public float nextStageWaitDelay = 3f;
 	public float witherTime = 20f; // player needs to reach the water level goal before this time
@@ -37,6 +42,7 @@ public class PlantStageController : MonoBehaviour
 	{
 		soundController = GetComponent<SoundController>();
 		waterablePlot = GetComponent<WaterablePlot>();
+		TEMP_TEXT = TEMP_DEBUG.GetComponent<Text>();
 	}
 
 	private void Start()
@@ -70,6 +76,7 @@ public class PlantStageController : MonoBehaviour
 
 		// the player should view the water ui only if the plot is covered
 		waterablePlot.SetIsWaterCanvasVisible(cover);
+		TEMP_TEXT.text = "seed is covered";
 	}
 
 	public void SetCurrentPlant(GameObject plant)
@@ -155,9 +162,13 @@ public class PlantStageController : MonoBehaviour
 		bool isTransitioningToNextStage = true;
 		while (isTransitioningToNextStage)
 		{
+			TEMP_TEXT.text = "next stage coroutine started";
+
 			yield return new WaitForSeconds(nextStageWaitDelay);
 
 			plantScript.NextStage();
+
+			isWatered = false; // todo remove
 
 			isTransitioningToNextStage = false;
 			nextStageRoutine = null;

@@ -1,10 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI; // TODO REMOVE
 
 public class PlantScript : MonoBehaviour
 {
     public GameObject[] PLANT_STAGES = new GameObject[5];
+
+    public GameObject TEMP_TEXT_OBJ;
 
     public const int WATER_LEVEL = 6;
     public const string SOIL_PREF = "CLAY_LOAM";
@@ -27,6 +30,8 @@ public class PlantScript : MonoBehaviour
 
     public int GetPreferredWaterLevel()
     {
+        TEMP_TEXT_OBJ.GetComponent<Text>().text = "plant script gave water level";
+
         return WATER_LEVEL;
     }
 
@@ -37,10 +42,11 @@ public class PlantScript : MonoBehaviour
 
     public void NextStage()
     {
+        TEMP_TEXT_OBJ.GetComponent<Text>().text = "plant script going to next stage";
         if (currentIndex == 0)
         {
             // disable seed mesh
-            GetComponent<MeshRenderer>().enabled = false;
+            transform.GetChild(0).gameObject.SetActive(false);
         }
 
         SetPrefab(currentIndex + 1);

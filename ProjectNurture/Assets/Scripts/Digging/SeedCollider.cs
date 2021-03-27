@@ -15,18 +15,25 @@ public class SeedCollider : MonoBehaviour
 
 	private void OnTriggerEnter(Collider collider)
 	{
-		GameObject other = collider.transform.gameObject;
 
 		// If the seeds hit the collider, means there are seeds inside the hole
 		// attach seeds onto the seedLocation
-		if (other.CompareTag("Tomato_Seed"))
-		{
-			SM_Soil.SetHasSeed(true);
-			SM_Soil.SetPlant("TOMATO");
+		Debug.Log("entered seed collider trigger");
 
-			other.GetComponent<Rigidbody>().isKinematic = true;
-			other.transform.position = seedLocation.transform.position;
-			other.transform.parent = seedLocation.transform;
+		if (collider.transform.gameObject.CompareTag("Seed"))
+		{
+			Debug.Log("seed detected");
+
+			collider.transform.gameObject.GetComponent<Rigidbody>().isKinematic = true;
+			collider.transform.position = seedLocation.transform.position;
+
+			GameObject plant = collider.transform.parent.gameObject;
+
+			SM_Soil.SetHasSeed(true);
+			SM_Soil.SetPlant(plant);
+
+			plant.transform.position = seedLocation.transform.position;
+			plant.transform.parent = seedLocation.transform;
 		}
 	}
 }
