@@ -5,6 +5,10 @@ TagManager:
   serializedVersion: 2
   tags:
   - Spade
+  - Waterable
+  - Water
+  - Seed
+  - Soil
   layers:
   - Default
   - TransparentFX

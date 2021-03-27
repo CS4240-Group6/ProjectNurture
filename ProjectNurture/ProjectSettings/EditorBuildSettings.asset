@@ -8,9 +8,15 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/AutoHand/Examples/Scenes/Oculus Integration/Demo.unity
     guid: f077d52fe9b27704b9cfab692a674a7a
-  - enabled: 1
+  - enabled: 0
     path: Assets/Digging/TestDigging.unity
     guid: 8c748fc70776dc642bc39b9363ce1bce
+  - enabled: 0
+    path: Assets/Scenes/Watering.unity
+    guid: 312395775863347e9a642d1e88f76100
+  - enabled: 1
+    path: Assets/Scenes/WateringAndSoil.unity
+    guid: afcba8cf698cdf846a5cdee0eff19816
   m_configObjects:
     Unity.XR.Oculus.Settings: {fileID: 11400000, guid: 5680aa5963553b2459c4ab15d4169db8,
       type: 2}
