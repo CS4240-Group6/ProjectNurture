@@ -784,6 +784,7 @@ MonoBehaviour:
   seedPrefab: {fileID: 2008232642}
   wateringCanPrefab: {fileID: 803777095}
   harvestPrefab: {fileID: 1808339256}
+  rightHandTransform: {fileID: 0}
 --- !u!1 &594944951
 GameObject:
   m_ObjectHideFlags: 0
