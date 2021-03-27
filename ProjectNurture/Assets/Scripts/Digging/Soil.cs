@@ -80,7 +80,6 @@ public class Soil : MonoBehaviour
 		this.gameObject.GetComponent<MeshFilter>().mesh = hole_0;
 
 		// Disable digging on the soil if the seed is inside and hole already covered
-		// this.gameObject.GetComponent<MeshCollider>().isTrigger = false;
 		this.gameObject.GetComponent<MeshCollider>().enabled = false;
 	}
 

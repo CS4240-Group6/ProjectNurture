@@ -7,9 +7,6 @@ public class WaterablePlot : MonoBehaviour
     public int waterLevelBuffer = 2; // if player waters more than goal + buffer, plant dies
     public float waterEvaporationPeriod = 60f; // water level is reduced by 1 every 60s
 
-    public GameObject waterBar;
-    public GameObject crossIcon;
-
     public AudioClip successSoundEffect;
     public AudioClip warningSoundEffect;
 
@@ -19,6 +16,10 @@ public class WaterablePlot : MonoBehaviour
     private int waterLevelCurrent = 0;
     private int waterLevelMax = 10;
     private int waterLevelGoal = 0;
+
+    private GameObject waterBar;
+    private GameObject crossIcon;
+    private GameObject witherIcon;
 
     private WaterBar waterBarScript;
     private SoundController soundController;
@@ -31,7 +32,15 @@ public class WaterablePlot : MonoBehaviour
     {
         soundController = GetComponent<SoundController>();
         plantStageController = GetComponent<PlantStageController>();
+
+        GameObject canvas = transform.GetChild(0).gameObject;
+
+        waterBar = canvas.transform.GetChild(0).gameObject;
+        crossIcon = canvas.transform.GetChild(1).gameObject;
+        witherIcon = canvas.transform.GetChild(2).gameObject;
+
         soilMound = gameObject.transform.GetChild(1).GetComponent<Soil>(); // Get script of soil mound
+
         waterBarScript = waterBar.GetComponent<WaterBar>();
     }
 
@@ -123,6 +132,7 @@ public class WaterablePlot : MonoBehaviour
     private void WaterFail()
     {
         plantStageController.ResetStage();
+        witherIcon.SetActive(true);
     }
 
     private void ReduceWater(int amount)
