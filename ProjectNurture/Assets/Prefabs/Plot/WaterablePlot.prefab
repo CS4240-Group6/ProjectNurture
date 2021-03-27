@@ -865,7 +865,7 @@ MonoBehaviour:
   waterLevelGoal: 6
   waterLevelBuffer: 3
   waterEvaporationPeriod: 30
-  isCanvasVisible: 1
+  isCanvasVisible: 0
   canvas: {fileID: 1720498154588679831}
   waterBar: {fileID: 1720498155015783938}
   crossIcon: {fileID: 5273984608607102151}
@@ -994,15 +994,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5558c4129680a479a96bd08c76ea501b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnLocation: {fileID: 337120303394231538}
-  plantStages:
-  - {fileID: 0}
-  - {fileID: 3677901936260695687, guid: 735b5d0e92960c447b4eb1c8abc04860, type: 3}
-  newStageSoundEffect: {fileID: 8300000, guid: 5b523f1adc38846ae8fed608b35af0e3, type: 3}
-  currentStageIndex: 0
   nextStageWaitDelay: 10
   witherTime: 20
-  deadPlantMaterial: {fileID: 2100000, guid: 2a57dd5bdb0e88f438b1421781dcabc9, type: 2}
 --- !u!1 &5273984608607102151
 GameObject:
   m_ObjectHideFlags: 0

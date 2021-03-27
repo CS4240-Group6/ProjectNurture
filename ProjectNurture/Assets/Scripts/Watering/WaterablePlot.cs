@@ -10,7 +10,7 @@ public class WaterablePlot : MonoBehaviour
     public int waterLevelBuffer = 2; // if player waters more than goal + buffer, plant dies
     public float waterEvaporationPeriod = 60f; // water level is reduced by 1 every 60s
 
-    public bool isCanvasVisible = true;
+    public bool isCanvasVisible = false;
     public GameObject canvas = null;
     public WaterBar waterBar = null;
     public GameObject crossIcon = null;
@@ -24,6 +24,7 @@ public class WaterablePlot : MonoBehaviour
     private SoundController soundController = null;
     private PlantStageController plantStageController = null;
     private Soil soilMound;
+    private bool isPlotWaterable = false;
 
     private void Awake()
     {
@@ -44,18 +45,10 @@ public class WaterablePlot : MonoBehaviour
         UpdateSoilMaterial();
     }
 
-    private void Update()
+    public void SetIsPlotWaterable(bool val)
     {
-        if (Input.GetKeyDown(KeyCode.Alpha1))
-        {
-            SetIsWaterCanvasVisible(!isCanvasVisible);
-        }
-    }
-
-    public void SetIsWaterCanvasVisible(bool val)
-    {
-        isCanvasVisible = val;
         canvas.SetActive(val);
+        isPlotWaterable = val;
     }
 
     public void SetWaterGoal(int goal)
@@ -85,7 +78,11 @@ public class WaterablePlot : MonoBehaviour
 
     public void AddWater(int amount)
     {
-        if (waterLevelCurrent != waterLevelMax)
+        if (!isPlotWaterable)
+        {
+            WaterWarning();
+        }    
+        else if (waterLevelCurrent != waterLevelMax)
         {
             waterLevelCurrent += amount;
             waterBar.SetWaterLevel(waterLevelCurrent);

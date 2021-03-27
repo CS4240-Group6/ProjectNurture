@@ -5,60 +5,62 @@ using UnityEngine.UI;
 
 public class PlantStageController : MonoBehaviour
 {
-	public GameObject spawnLocation = null;
-	public GameObject[] plantStages = null;
-	public AudioClip newStageSoundEffect = null;
-	public int currentStageIndex = 0;
-
-
-	public GameObject TEMP_DEBUG;
-	private Text TEMP_TEXT;
-
-	public float nextStageWaitDelay = 3f;
-	public float witherTime = 20f; // player needs to reach the water level goal before this time
-
-	public Material deadPlantMaterial = null;
-
-	private GameObject currentStage = null;
 	private PlantScript plantScript;
-
-	private SoundController soundController = null;
 	private WaterablePlot waterablePlot = null;
 
-	private Coroutine nextStageRoutine = null;
-	private Coroutine witherTimerRoutine = null;
-
+	// plant state
 	private bool isWatered = false;
 	private bool hasSeed = false;
 	private bool isSeedCovered = false;
+	private bool isPlotWaterable = false;
 
-	private float destroyAnimationTime = 5f;
-	private float witheredPlantDropSpeed = 5f;
+	// coroutine that changes plants stage when timer reaches 0
+	private Coroutine nextStageRoutine = null;
+	private Coroutine witherTimerRoutine = null;
 
-	private int minWitherIndex = 1;
-	private int maxWitherIndex = 4;
+	// time for coroutines
+	public float nextStageWaitDelay = 3f;
+	public float witherTime = 20f;
 
 	private void Awake()
 	{
-		soundController = GetComponent<SoundController>();
 		waterablePlot = GetComponent<WaterablePlot>();
-		TEMP_TEXT = TEMP_DEBUG.GetComponent<Text>();
-	}
-
-	private void Start()
-	{
-		bool isPlantScriptAvail = plantScript != null;
-		waterablePlot.SetIsWaterCanvasVisible(isPlantScriptAvail);
 	}
 
 	private void Update()
 	{
-		// if conditions are met, and there is a next stage to advance to, and this routine has not been started yet
-		if (hasSeed && isSeedCovered && isWatered && plantScript.IsNextStagePresent() && nextStageRoutine == null)
+		// to update water bar ui
+		bool isCurPlotWaterable = IsPlotWaterable();
+		if (isCurPlotWaterable != isPlotWaterable)
+        {
+			waterablePlot.SetIsPlotWaterable(isCurPlotWaterable);
+			isPlotWaterable = isCurPlotWaterable;
+		}
+
+		// to advance to the next stage
+		if (IsPlantNeedsMet() && plantScript && plantScript.IsNextStagePresent() && nextStageRoutine == null)
 		{
+			// start the countdown to advance to the next stage
 			nextStageRoutine = StartCoroutine(StartNextStage());
 		}
+
+		// to reset the field once all fruits are harvested
+		else if (plantScript && !plantScript.IsNextStagePresent() && plantScript.IsHarvestStageComplete())
+        {
+			// TODO: play victory song then reset the plot
+        }
 	}
+
+	private bool IsPlotWaterable()
+    {
+		// plot can only be watered if it is covered and the plant can be watered
+		return hasSeed && isSeedCovered && plantScript && plantScript.IsPlantWaterable();
+    }
+
+	private bool IsPlantNeedsMet()
+    {
+		return hasSeed && isSeedCovered && isWatered;
+    }
 
 	public void SetIsWatered(bool water)
 	{
@@ -73,15 +75,11 @@ public class PlantStageController : MonoBehaviour
 	public void SetIsSeedCovered(bool cover)
 	{
 		isSeedCovered = cover;
-
-		// the player should view the water ui only if the plot is covered
-		waterablePlot.SetIsWaterCanvasVisible(cover);
-		TEMP_TEXT.text = "seed is covered";
 	}
 
-	public void SetCurrentPlant(GameObject plant)
+	public void SetCurrentPlant(PlantScript plant)
     {
-		plantScript = plant.GetComponent<PlantScript>();
+		plantScript = plant;
 		waterablePlot.SetWaterGoal(plantScript.GetPreferredWaterLevel());
 	}
 
@@ -94,7 +92,61 @@ public class PlantStageController : MonoBehaviour
 		return isSeedCovered;
 	}
 
-	// plant dies if it does not receive enough water in time
+	public void ResetStage()
+	{
+		if (nextStageRoutine != null)
+		{
+			StopCoroutine(nextStageRoutine);
+			nextStageRoutine = null;
+		}
+
+		// reset water
+		waterablePlot.ResetWater();
+		isWatered = false;
+
+		// reset seed state
+		hasSeed = false;
+		isSeedCovered = false;
+
+		// call plantScript to destroy itself
+		plantScript.KillPlant();
+		plantScript = null;
+	}
+
+	private IEnumerator StartNextStage()
+	{
+		bool isTransitioningToNextStage = true;
+		while (isTransitioningToNextStage)
+		{
+			// since needs are met, stop the previous stage's wither timer if it exists
+			if (witherTimerRoutine != null)
+			{
+				StopCoroutine(witherTimerRoutine);
+			}
+
+			yield return new WaitForSeconds(nextStageWaitDelay);
+
+			// go to the next stage
+			plantScript.NextStage();
+
+			// reset water
+			waterablePlot.ResetWater();
+			isWatered = false;
+
+			// start a new wither timer for this stage
+			bool shouldStartWitherTimer = plantScript.IsPlantWitherable();
+			if (shouldStartWitherTimer)
+            {
+				witherTimerRoutine = StartCoroutine(StartWitherTimer());
+            }
+
+			// reset next stage routine
+			isTransitioningToNextStage = false;
+			nextStageRoutine = null;
+		}
+	}
+
+	// kill the plant if it has not reached its water goal when the timer reaches 0
 	private IEnumerator StartWitherTimer()
 	{
 		bool isTimerOngoing = true;
@@ -106,114 +158,4 @@ public class PlantStageController : MonoBehaviour
 			isTimerOngoing = false;
 		}
 	}
-
-	public void ResetStage()
-	{
-		if (nextStageRoutine != null)
-		{
-			StopCoroutine(nextStageRoutine);
-			nextStageRoutine = null;
-		}
-
-		StartCoroutine(StartKillPlantAnimation());
-	}
-
-	private IEnumerator StartKillPlantAnimation()
-	{
-		bool isAnimationOngoing = true;
-		while (isAnimationOngoing)
-		{
-			waterablePlot.ResetWater();
-			isWatered = false;
-
-			// if currentStage is rendered on the screen, change its colour and move it downwards
-			Renderer renderer = currentStage.GetComponent<Renderer>();
-			if (renderer != null)
-			{
-				Material[] newMaterials = new Material[renderer.materials.Length];
-				for (var i = 0; i < renderer.materials.Length; i++)
-                {
-					newMaterials[i] = deadPlantMaterial;
-                }
-				renderer.materials = newMaterials;
-
-				currentStage.GetComponent<Rigidbody>().velocity = new Vector3(0, -1) * witheredPlantDropSpeed;
-			}
-
-			yield return new WaitForSeconds(destroyAnimationTime);
-
-			//if (renderer != null)
-            //{
-			//	SetCurrentStage(0, false);
-			//} 
-			//else 
-			//{
-				SetCurrentStage(0, true);
-			//}
-
-			hasSeed = false;
-			isSeedCovered = false;
-			isAnimationOngoing = false;
-		}
-	}
-
-	private IEnumerator StartNextStage()
-	{
-		bool isTransitioningToNextStage = true;
-		while (isTransitioningToNextStage)
-		{
-			TEMP_TEXT.text = "next stage coroutine started";
-
-			yield return new WaitForSeconds(nextStageWaitDelay);
-
-			plantScript.NextStage();
-
-			isWatered = false; // todo remove
-
-			isTransitioningToNextStage = false;
-			nextStageRoutine = null;
-		}
-	}
-
-	private void NextStage()
-	{
-		if (currentStageIndex < plantStages.Length)
-		{
-			SetCurrentStage(currentStageIndex + 1, true);
-		}
-	}
-
-	private void SetCurrentStage(int index, bool shouldPlayAudio)
-	{
-		Debug.Log("setting current stage to " + index);
-
-		currentStageIndex = index;
-		waterablePlot.ResetWater();
-		isWatered = false;
-
-		if (shouldPlayAudio) 
-		{
-			soundController.PlayAudio(newStageSoundEffect);
-		}
-		
-		if (currentStage != null)
-		{
-			Destroy(currentStage);   
-		}
-
-		if (witherTimerRoutine != null)
-		{
-			StopCoroutine(witherTimerRoutine);
-			witherTimerRoutine = null;
-		}
-
-		if (index >= minWitherIndex && index <= maxWitherIndex)
-		{
-			witherTimerRoutine = StartCoroutine(StartWitherTimer());
-		}
-
-		GameObject newStage = Instantiate(plantStages[index], spawnLocation.transform.position, Quaternion.identity, transform);
-		currentStage = newStage;
-	}
-
 }

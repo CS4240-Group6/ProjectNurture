@@ -108,9 +108,9 @@ public class Soil : MonoBehaviour
 		controller.SetIsSeedCovered(boolean);
 	}
 
-	public void SetPlant(GameObject seed)
+	public void SetPlant(PlantScript plantScript)
     {
-		controller.SetCurrentPlant(seed);
+		controller.SetCurrentPlant(plantScript);
     }
 
 }

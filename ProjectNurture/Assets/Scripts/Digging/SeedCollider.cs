@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class SeedCollider : MonoBehaviour
 {
@@ -18,22 +19,28 @@ public class SeedCollider : MonoBehaviour
 
 		// If the seeds hit the collider, means there are seeds inside the hole
 		// attach seeds onto the seedLocation
-		Debug.Log("entered seed collider trigger");
 
 		if (collider.transform.gameObject.CompareTag("Seed"))
 		{
-			Debug.Log("seed detected");
 
-			collider.transform.gameObject.GetComponent<Rigidbody>().isKinematic = true;
-			collider.transform.position = seedLocation.transform.position;
+            // GameObject parent = collider.transform.parent.gameObject;
+            Debug.Log("collided with " + collider.transform.name);
+			GameObject other = collider.transform.gameObject;
 
-			GameObject plant = collider.transform.parent.gameObject;
+			PlantScript plantScript = other.GetComponent<PlantScript>();
+			Debug.Log("found plant script" + plantScript);
 
 			SM_Soil.SetHasSeed(true);
-			SM_Soil.SetPlant(plant);
+			SM_Soil.SetPlant(plantScript);
 
-			plant.transform.position = seedLocation.transform.position;
-			plant.transform.parent = seedLocation.transform;
+			other.GetComponent<Rigidbody>().isKinematic = true;
+			other.transform.position = seedLocation.transform.position;
+			other.transform.parent = seedLocation.transform;
+
+
+			// plant.transform.position = seedLocation.transform.position;
+			// collider.transform.position = new Vector3(0, 0, 0);
+			// plant.transform.parent = seedLocation.transform;
 		}
 	}
 }
