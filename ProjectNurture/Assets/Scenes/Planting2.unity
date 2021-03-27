@@ -7697,7 +7697,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!81 &725679081
 AudioListener:
   m_ObjectHideFlags: 0
@@ -8882,15 +8882,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4419643544667802, guid: 9e76fb3c6fd6ef04e839ca5428dbad55, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.28
+      value: 0.272
       objectReference: {fileID: 0}
     - target: {fileID: 4419643544667802, guid: 9e76fb3c6fd6ef04e839ca5428dbad55, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.1
+      value: 0.085
       objectReference: {fileID: 0}
     - target: {fileID: 4419643544667802, guid: 9e76fb3c6fd6ef04e839ca5428dbad55, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.448
+      value: 0.455
       objectReference: {fileID: 0}
     - target: {fileID: 4419643544667802, guid: 9e76fb3c6fd6ef04e839ca5428dbad55, type: 3}
       propertyPath: m_LocalRotation.w
@@ -8959,7 +8959,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1763251032}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 822bc9090447b9c40833509c4a32e597, type: 3}
   m_Name: 
@@ -9008,7 +9008,7 @@ Rigidbody:
   m_Mass: 1
   m_Drag: 0
   m_AngularDrag: 0.05
-  m_UseGravity: 1
+  m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
@@ -9216,7 +9216,7 @@ PrefabInstance:
     - target: {fileID: 5311213997378984017, guid: 98c734560977c7948b5df71f16d31fa7,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5311213997379077247, guid: 98c734560977c7948b5df71f16d31fa7,
         type: 3}

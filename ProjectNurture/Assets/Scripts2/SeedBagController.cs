@@ -17,11 +17,11 @@ public class SeedBagController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        InvokeRepeating("FrameUpdate", 0.0f, 5.0f);
     }
 
     // Update is called once per frame
-    void FixedUpdate()
+    void FrameUpdate()
     {
         //log
         text.text = "In update function";
@@ -36,28 +36,13 @@ public class SeedBagController : MonoBehaviour
 
         if (Physics.Raycast(this.transform.position, this.transform.up, out hit, 100, soilMask))
         {
-            //log
-            Debug.Log("raycast has hit something!!!!");
-            text.text = "Hit " + hit.transform.name;
-            Debug.Log("Hit " + hit.transform.name);
 
-            if (hit.transform.gameObject.CompareTag("SoilCollider"))
-            {
-                //log
-                text.text = "Soil ccollider hit";
-                Debug.Log("Soil ccollider hit");
-
-                //log
-                text.text = "Going to instantiate " + numSeeds;
-                Debug.Log("Going to instantiate " + numSeeds);
-
-                Vector3 seedPosition = this.transform.position + new Vector3(0, -0.29f, 0); //so that seed spawns from top of seed packet
-
-                for (int i = 0; i < numSeeds; i++)
-                {
-                    Instantiate(seedPrefab, seedPosition, Quaternion.identity);
-                }
-            }
+            Vector3 seedPosition = this.transform.position + this.transform.up * 0.29f;
+            for (int j = 0; j < 3; j++)
+                Instantiate(seedPrefab, seedPosition, Quaternion.identity);
         }
+
+
     }
 }
+
