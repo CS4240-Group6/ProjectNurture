@@ -803,6 +803,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -1000,6 +1001,7 @@ MonoBehaviour:
   newStageSoundEffect: {fileID: 8300000, guid: 5b523f1adc38846ae8fed608b35af0e3, type: 3}
   currentStageIndex: 0
   nextStageWaitDelay: 10
+  witherTime: 20
   deadPlantMaterial: {fileID: 2100000, guid: 2a57dd5bdb0e88f438b1421781dcabc9, type: 2}
 --- !u!1 &5273984608607102151
 GameObject:

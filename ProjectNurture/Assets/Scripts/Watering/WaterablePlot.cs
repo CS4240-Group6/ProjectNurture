@@ -32,12 +32,12 @@ public class WaterablePlot : MonoBehaviour
         soilMound = this.gameObject.transform.GetChild(1).GetComponent<Soil>(); // Get script of soil mound
     }
 
-
     private void Start()
     {
         canvas.SetActive(isCanvasVisible);
         
-        waterBar.SetMaxWaterLevel(waterLevelMax, waterLevelGoal);
+        waterBar.SetMaxWaterLevel(waterLevelMax);
+        waterBar.SetWaterGoal(waterLevelGoal);
         waterBar.SetWaterLevel(waterLevelCurrent);
 
         StartCoroutine(ReduceWaterOverTime());
@@ -56,6 +56,12 @@ public class WaterablePlot : MonoBehaviour
     {
         isCanvasVisible = val;
         canvas.SetActive(val);
+    }
+
+    public void SetWaterGoal(int goal)
+    {
+        waterLevelGoal = goal;
+        waterBar.SetWaterGoal(goal);
     }
 
     private IEnumerator ReduceWaterOverTime()

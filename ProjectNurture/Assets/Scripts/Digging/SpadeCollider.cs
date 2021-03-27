@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class SoilCollider : MonoBehaviour
+public class SpadeCollider : MonoBehaviour
 {
 	// Debug
 	// public Text debug_text;
@@ -50,13 +50,6 @@ public class SoilCollider : MonoBehaviour
 		{
 			// debug_text.text = "Spade entering collider";
 			dig_enter_source.Play();
-		}
-
-		// If the seeds hit the collider, means there are seeds inside the hole
-		if (collider.transform.gameObject.CompareTag("Tomato_Seed"))
-		{
-			SM_Soil.SetHasSeed(true);
-			SM_Soil.SetPlant("TOMATO");
 		}
 
 		// If the soil hit the collider, means the seed is covered

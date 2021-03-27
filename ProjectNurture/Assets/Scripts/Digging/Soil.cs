@@ -11,7 +11,7 @@ public class Soil : MonoBehaviour
 
     // Variables for managing state of soil clod
 	private float digging_state = 0;
-	private string plant = "NO_PLANT";
+	private GameObject plant;
 
 	private GameObject ui_popup_seeds;
 	private GameObject ui_popup_soil;
@@ -80,7 +80,8 @@ public class Soil : MonoBehaviour
 		this.gameObject.GetComponent<MeshFilter>().mesh = hole_0;
 
 		// Disable digging on the soil if the seed is inside and hole already covered
-		this.gameObject.GetComponent<MeshCollider>().isTrigger = false;
+		// this.gameObject.GetComponent<MeshCollider>().isTrigger = false;
+		this.gameObject.GetComponent<MeshCollider>().enabled = false;
     }
 
 	/**
@@ -107,12 +108,12 @@ public class Soil : MonoBehaviour
 		controller.SetIsSeedCovered(boolean);
     }
 
-	public void SetPlant(string plant)
+	public void SetPlant(GameObject seed)
     {
-		this.plant = plant;
+		this.plant = seed;
     }
 
-	public string GetPlant()
+	public GameObject GetPlant()
     {
 		return this.plant;
     }

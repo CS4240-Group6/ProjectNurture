@@ -15,6 +15,7 @@ public class PlantStageController : MonoBehaviour
 	public Material deadPlantMaterial = null;
 
 	private GameObject currentStage = null;
+	private PlantScript plantScript;
 
 	private SoundController soundController = null;
 	private WaterablePlot waterablePlot = null;
@@ -40,12 +41,14 @@ public class PlantStageController : MonoBehaviour
 
 	private void Start()
 	{
-		SetCurrentStage(currentStageIndex, false);
+		bool isPlantScriptAvail = plantScript != null;
+		waterablePlot.SetIsWaterCanvasVisible(isPlantScriptAvail);
 	}
 
 	private void Update()
 	{
-		if (hasSeed && isSeedCovered && isWatered && nextStageRoutine == null)
+		// if conditions are met, and there is a next stage to advance to, and this routine has not been started yet
+		if (hasSeed && isSeedCovered && isWatered && plantScript.IsNextStagePresent() && nextStageRoutine == null)
 		{
 			nextStageRoutine = StartCoroutine(StartNextStage());
 		}
@@ -64,6 +67,15 @@ public class PlantStageController : MonoBehaviour
 	public void SetIsSeedCovered(bool cover)
 	{
 		isSeedCovered = cover;
+
+		// the player should view the water ui only if the plot is covered
+		waterablePlot.SetIsWaterCanvasVisible(cover);
+	}
+
+	public void SetCurrentPlant(GameObject plant)
+    {
+		plantScript = plant.GetComponent<PlantScript>();
+		waterablePlot.SetWaterGoal(plantScript.GetPreferredWaterLevel());
 	}
 
 	public bool GetHasSeed()
@@ -145,7 +157,7 @@ public class PlantStageController : MonoBehaviour
 		{
 			yield return new WaitForSeconds(nextStageWaitDelay);
 
-			NextStage();
+			plantScript.NextStage();
 
 			isTransitioningToNextStage = false;
 			nextStageRoutine = null;
