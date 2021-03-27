@@ -106,4 +106,14 @@ public class Soil : MonoBehaviour
     {
 		controller.SetIsSeedCovered(boolean);
     }
+
+	public void SetPlant(string plant)
+    {
+		this.plant = plant;
+    }
+
+	public string GetPlant()
+    {
+		return this.plant;
+    }
 }

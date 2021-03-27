@@ -220,6 +220,55 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &442475856
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 442475858}
+  - component: {fileID: 442475857}
+  m_Layer: 0
+  m_Name: Tomato_Plant
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &442475857
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 442475856}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3789cd98d9f143145870a7e4947173e3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TOMATO_STAGES:
+  - {fileID: 8072357959580027251, guid: 9e055f15fb87ecd4388db0c20b84d15f, type: 3}
+  - {fileID: 1465542291859605451, guid: 7d08bc796c7cec04da9b287d7f0b7b19, type: 3}
+  - {fileID: 4713309783054109696, guid: 7f7b0d25fe9244ef2b1fb5a4ab4785a9, type: 3}
+  - {fileID: 5039031772667712543, guid: bce22e7cbb1180f4bb8dca6739141cd5, type: 3}
+  - {fileID: 8348390437377399092, guid: 9227e8513955c3c4982fa2d0bbbad799, type: 3}
+--- !u!4 &442475858
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 442475856}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: -2.117}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 10
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1316862961
 PrefabInstance:
   m_ObjectHideFlags: 0

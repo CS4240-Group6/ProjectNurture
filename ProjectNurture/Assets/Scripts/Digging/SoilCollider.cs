@@ -53,9 +53,10 @@ public class SoilCollider : MonoBehaviour
 		}
 
 		// If the seeds hit the collider, means there are seeds inside the hole
-		if (collider.transform.gameObject.CompareTag("Seed"))
+		if (collider.transform.gameObject.CompareTag("Tomato_Seed"))
 		{
 			SM_Soil.SetHasSeed(true);
+			SM_Soil.SetPlant("TOMATO");
 		}
 
 		// If the soil hit the collider, means the seed is covered
