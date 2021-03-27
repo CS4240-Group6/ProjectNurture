@@ -784,6 +784,7 @@ MonoBehaviour:
   seedPrefab: {fileID: 2008232642}
   wateringCanPrefab: {fileID: 803777095}
   harvestPrefab: {fileID: 1808339256}
+  rightHandTransform: {fileID: 1723032162}
 --- !u!1 &594944951
 GameObject:
   m_ObjectHideFlags: 0
@@ -2185,6 +2186,12 @@ Transform:
 --- !u!20 &1723032161 stripped
 Camera:
   m_CorrespondingSourceObject: {fileID: 5311213997377461993, guid: 98c734560977c7948b5df71f16d31fa7,
+    type: 3}
+  m_PrefabInstance: {fileID: 1723032156}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &1723032162 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5311213997379127669, guid: 98c734560977c7948b5df71f16d31fa7,
     type: 3}
   m_PrefabInstance: {fileID: 1723032156}
   m_PrefabAsset: {fileID: 0}

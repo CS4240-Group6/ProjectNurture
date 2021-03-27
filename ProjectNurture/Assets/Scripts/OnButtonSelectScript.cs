@@ -10,6 +10,7 @@ public class OnButtonSelectScript : MonoBehaviour
     public GameObject seedPrefab;
     public GameObject wateringCanPrefab;
     public GameObject harvestPrefab;
+    public Transform rightHandTransform;
 
     List<GameObject> generatedObjects;
 
@@ -37,28 +38,32 @@ public class OnButtonSelectScript : MonoBehaviour
             if (btn.name == "dig_button")
             {
                 Debug.Log("Dig button clicked");
-                clone = Instantiate(spadePrefab, new Vector3(0, 0, 0), Quaternion.identity);
+                clone = Instantiate(spadePrefab, rightHandTransform.position + new Vector3(0.3f, 0.3f, 0.3f), Quaternion.identity);
+                clone.transform.parent = GameObject.Find("RightHandAnchor").transform;
                 clone.transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
                 generatedObjects.Add(clone);
             }
             else if (btn.name == "plant_button")
             {
                 Debug.Log("Plant button clicked");
-                clone = Instantiate(seedPrefab, new Vector3(0, 0, 0), Quaternion.identity);
+                clone = Instantiate(seedPrefab, rightHandTransform.position + new Vector3(0.3f, 0.3f, 0.3f), Quaternion.identity);
+                clone.transform.parent = GameObject.Find("RightHandAnchor").transform;
                 clone.transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
                 generatedObjects.Add(clone);
             }
             else if (btn.name == "water_button")
             {
                 Debug.Log("Water button clicked");
-                clone = Instantiate(wateringCanPrefab, new Vector3(0, 0, 0), Quaternion.identity);
-                clone.transform.localScale = new Vector3(0.25f, 0.25f, 0.25f);
+                clone = Instantiate(wateringCanPrefab, rightHandTransform.position + new Vector3(0.3f, 0.3f, 0.3f), Quaternion.identity);
+                clone.transform.parent = GameObject.Find("RightHandAnchor").transform;
+                clone.transform.localScale = new Vector3(0.02f, 0.02f, 0.02f);
                 generatedObjects.Add(clone);
             }
             else if (btn.name == "harvest_button")
             {
                 Debug.Log("Harvest button clicked");
-                clone = Instantiate(harvestPrefab, new Vector3(0, 0, 0), Quaternion.identity);
+                clone = Instantiate(harvestPrefab, rightHandTransform.position + new Vector3(0.3f, 0.3f, 0.3f), Quaternion.identity);
+                clone.transform.parent = GameObject.Find("RightHandAnchor").transform;
                 clone.transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
                 generatedObjects.Add(clone);
             }     
