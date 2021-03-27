@@ -7697,7 +7697,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!81 &725679081
 AudioListener:
   m_ObjectHideFlags: 0
@@ -9216,7 +9216,7 @@ PrefabInstance:
     - target: {fileID: 5311213997378984017, guid: 98c734560977c7948b5df71f16d31fa7,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5311213997379077247, guid: 98c734560977c7948b5df71f16d31fa7,
         type: 3}
@@ -9226,52 +9226,52 @@ PrefabInstance:
     - target: {fileID: 5311213997379077247, guid: 98c734560977c7948b5df71f16d31fa7,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.765
+      value: 0.72
       objectReference: {fileID: 0}
     - target: {fileID: 5311213997379077247, guid: 98c734560977c7948b5df71f16d31fa7,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.241
+      value: 3.48
       objectReference: {fileID: 0}
     - target: {fileID: 5311213997379077247, guid: 98c734560977c7948b5df71f16d31fa7,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -6.046
+      value: -5.88
       objectReference: {fileID: 0}
     - target: {fileID: 5311213997379077247, guid: 98c734560977c7948b5df71f16d31fa7,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.9926682
+      value: 0.9969658
       objectReference: {fileID: 0}
     - target: {fileID: 5311213997379077247, guid: 98c734560977c7948b5df71f16d31fa7,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.10515215
+      value: 0.06680822
       objectReference: {fileID: 0}
     - target: {fileID: 5311213997379077247, guid: 98c734560977c7948b5df71f16d31fa7,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.05873664
+      value: 0.033844993
       objectReference: {fileID: 0}
     - target: {fileID: 5311213997379077247, guid: 98c734560977c7948b5df71f16d31fa7,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.010145117
+      value: 0.021222945
       objectReference: {fileID: 0}
     - target: {fileID: 5311213997379077247, guid: 98c734560977c7948b5df71f16d31fa7,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
-      value: 12.12
+      value: 7.572
       objectReference: {fileID: 0}
     - target: {fileID: 5311213997379077247, guid: 98c734560977c7948b5df71f16d31fa7,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: -6.724
+      value: 4.068
       objectReference: {fileID: 0}
     - target: {fileID: 5311213997379077247, guid: 98c734560977c7948b5df71f16d31fa7,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0.456
+      value: 2.708
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 98c734560977c7948b5df71f16d31fa7, type: 3}
