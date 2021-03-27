@@ -38,24 +38,28 @@ public class OnButtonSelectScript : MonoBehaviour
             {
                 Debug.Log("Dig button clicked");
                 clone = Instantiate(spadePrefab, new Vector3(0, 0, 0), Quaternion.identity);
+                clone.transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
                 generatedObjects.Add(clone);
             }
             else if (btn.name == "plant_button")
             {
                 Debug.Log("Plant button clicked");
                 clone = Instantiate(seedPrefab, new Vector3(0, 0, 0), Quaternion.identity);
+                clone.transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
                 generatedObjects.Add(clone);
             }
             else if (btn.name == "water_button")
             {
                 Debug.Log("Water button clicked");
                 clone = Instantiate(wateringCanPrefab, new Vector3(0, 0, 0), Quaternion.identity);
+                clone.transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
                 generatedObjects.Add(clone);
             }
             else if (btn.name == "harvest_button")
             {
                 Debug.Log("Harvest button clicked");
                 clone = Instantiate(harvestPrefab, new Vector3(0, 0, 0), Quaternion.identity);
+                clone.transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
                 generatedObjects.Add(clone);
             }     
         }
