@@ -52,7 +52,7 @@ public class OnButtonSelectScript : MonoBehaviour
             {
                 Debug.Log("Water button clicked");
                 clone = Instantiate(wateringCanPrefab, new Vector3(0, 0, 0), Quaternion.identity);
-                clone.transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
+                clone.transform.localScale = new Vector3(0.25f, 0.25f, 0.25f);
                 generatedObjects.Add(clone);
             }
             else if (btn.name == "harvest_button")
