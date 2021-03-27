@@ -875,7 +875,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 594944951}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.07482064, y: 0.47315902, z: -0.64352393}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -1309,12 +1309,6 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: 4f7ac604eff3ce44c92d5c1ab400fa69, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a9d2de84afb308a4796cc671d3432b4d, type: 3}
---- !u!1 &1332857854 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1525749097544336, guid: a9d2de84afb308a4796cc671d3432b4d,
-    type: 3}
-  m_PrefabInstance: {fileID: 1332857853}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1332857855 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1038146256242982, guid: a9d2de84afb308a4796cc671d3432b4d,
@@ -1333,15 +1327,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c08c39e4afebee741a6e4bd468948f4e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cursorVisual: {fileID: 1332857854}
-  maxLength: 10
-  _laserBeamBehavior: 0
-  m_restoreOnInputAcquired: 0
-  _startPoint: {x: 0, y: 0, z: 0}
-  _forward: {x: 0, y: 0, z: 0}
-  _endPoint: {x: 0, y: 0, z: 0}
-  _hitTarget: 0
-  lineRenderer: {fileID: 0}
 --- !u!1 &1457357839
 GameObject:
   m_ObjectHideFlags: 0
@@ -1962,7 +1947,7 @@ PrefabInstance:
     - target: {fileID: 5311213997379077247, guid: 98c734560977c7948b5df71f16d31fa7,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.114
+      value: 0.444
       objectReference: {fileID: 0}
     - target: {fileID: 5311213997379077247, guid: 98c734560977c7948b5df71f16d31fa7,
         type: 3}
