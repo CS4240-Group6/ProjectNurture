@@ -30,11 +30,6 @@ public class SpadeCollider : MonoBehaviour
 		dig_leave_source.clip = dig_leave;
 	}
 
-	void Update()
-	{
-		
-	}
-
 	private void OnTriggerEnter(Collider collider)
 	{
 		if (collider.transform.gameObject.CompareTag("Spade"))
@@ -60,6 +55,12 @@ public class SpadeCollider : MonoBehaviour
 		if (collider.transform.gameObject.CompareTag("Spade"))
 		{
 			// debug_text.text = "Spade leaving collider";
+
+			// if seed is covered, then dont allow it to dig
+			if (SM_Soil.GetHasSeed() && SM_Soil.GetIsSeedCovered())
+			{
+				return;
+			}
 
 			// TODO: Debug why unable to transition to intermediate state
 			if (SM_Soil.getDiggingState() == 0f)

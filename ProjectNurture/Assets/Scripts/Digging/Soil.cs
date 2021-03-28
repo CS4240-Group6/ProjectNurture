@@ -125,4 +125,9 @@ public class Soil : MonoBehaviour
 		return controller.GetHasSeed();
     }
 
+	public bool GetIsSeedCovered()
+    {
+		return controller.GetIsSeedCovered();
+    }
+
 }

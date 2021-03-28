@@ -21,6 +21,7 @@ public class WaterablePlot : MonoBehaviour
     private GameObject crossIcon;
     private GameObject witherIcon;
     private GameObject noSeedIcon;
+    private GameObject noSoilIcon;
 
     private WaterBar waterBarScript;
     private SoundController soundController;
@@ -40,6 +41,7 @@ public class WaterablePlot : MonoBehaviour
         crossIcon = canvas.transform.GetChild(1).gameObject;
         witherIcon = canvas.transform.GetChild(2).gameObject;
         noSeedIcon = canvas.transform.GetChild(3).gameObject;
+        noSoilIcon = canvas.transform.GetChild(4).gameObject;
 
         soilMound = gameObject.transform.GetChild(1).GetComponent<Soil>(); // Get script of soil mound
 
@@ -134,7 +136,7 @@ public class WaterablePlot : MonoBehaviour
         } 
         else if (!plantStageController.GetIsSeedCovered())
         {
-
+            noSoilIcon.SetActive(true);
         }
         else
         {
