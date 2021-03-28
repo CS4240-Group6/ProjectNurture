@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 5190692970153927403}
   - component: {fileID: 1142377519132623697}
   - component: {fileID: 9150166587109267871}
+  - component: {fileID: 8939801820827959675}
   m_Layer: 0
   m_Name: LargeTomato (1)
   m_TagString: Untagged
@@ -112,7 +113,7 @@ Rigidbody:
   m_Drag: 0
   m_AngularDrag: 0.05
   m_UseGravity: 1
-  m_IsKinematic: 1
+  m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
@@ -173,6 +174,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9cf005ef1f854af46bd091f1cd1e7fd9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!138 &8939801820827959675
+FixedJoint:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 408156745847205809}
+  m_ConnectedBody: {fileID: 8490091575361424783}
+  m_ConnectedArticulationBody: {fileID: 0}
+  m_BreakForce: 100
+  m_BreakTorque: 100
+  m_EnableCollision: 0
+  m_EnablePreprocessing: 1
+  m_MassScale: 1
+  m_ConnectedMassScale: 1
 --- !u!1 &2384181108448075822
 GameObject:
   m_ObjectHideFlags: 0
@@ -188,6 +204,7 @@ GameObject:
   - component: {fileID: 4222636416973719766}
   - component: {fileID: 6648742063894893689}
   - component: {fileID: 6938159484465916498}
+  - component: {fileID: 4867777619216652487}
   m_Layer: 0
   m_Name: LargeTomato (4)
   m_TagString: Untagged
@@ -285,7 +302,7 @@ Rigidbody:
   m_Drag: 0
   m_AngularDrag: 0.05
   m_UseGravity: 1
-  m_IsKinematic: 1
+  m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
@@ -346,6 +363,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9cf005ef1f854af46bd091f1cd1e7fd9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!138 &4867777619216652487
+FixedJoint:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2384181108448075822}
+  m_ConnectedBody: {fileID: 8490091575361424783}
+  m_ConnectedArticulationBody: {fileID: 0}
+  m_BreakForce: 100
+  m_BreakTorque: 100
+  m_EnableCollision: 0
+  m_EnablePreprocessing: 1
+  m_MassScale: 1
+  m_ConnectedMassScale: 1
 --- !u!1 &2632196562640380482
 GameObject:
   m_ObjectHideFlags: 0
@@ -357,6 +389,8 @@ GameObject:
   - component: {fileID: 5056380135269790503}
   - component: {fileID: 7747902884035233439}
   - component: {fileID: 7881724430984140252}
+  - component: {fileID: 8490091575361424783}
+  - component: {fileID: 3159277586161166672}
   m_Layer: 0
   m_Name: LargePlant
   m_TagString: Untagged
@@ -429,6 +463,35 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!54 &8490091575361424783
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2632196562640380482}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 126
+  m_CollisionDetection: 0
+--- !u!65 &3159277586161166672
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2632196562640380482}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.20267591, y: 0.20133029, z: 0.21307288}
+  m_Center: {x: 0.023956552, y: 0.07609444, z: 0.034629382}
 --- !u!1 &3640020487243919533
 GameObject:
   m_ObjectHideFlags: 0
@@ -444,6 +507,7 @@ GameObject:
   - component: {fileID: 5119444867801618357}
   - component: {fileID: 501112956349671737}
   - component: {fileID: 3525318016115867808}
+  - component: {fileID: 9067677323644398422}
   m_Layer: 0
   m_Name: LargeTomato
   m_TagString: Untagged
@@ -541,7 +605,7 @@ Rigidbody:
   m_Drag: 0
   m_AngularDrag: 0.05
   m_UseGravity: 1
-  m_IsKinematic: 1
+  m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
@@ -602,6 +666,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9cf005ef1f854af46bd091f1cd1e7fd9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!138 &9067677323644398422
+FixedJoint:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3640020487243919533}
+  m_ConnectedBody: {fileID: 8490091575361424783}
+  m_ConnectedArticulationBody: {fileID: 0}
+  m_BreakForce: 100
+  m_BreakTorque: 100
+  m_EnableCollision: 0
+  m_EnablePreprocessing: 1
+  m_MassScale: 1
+  m_ConnectedMassScale: 1
 --- !u!1 &5096361019534455805
 GameObject:
   m_ObjectHideFlags: 0
@@ -617,6 +696,7 @@ GameObject:
   - component: {fileID: 680808808833664011}
   - component: {fileID: 8723798443356391817}
   - component: {fileID: 6333370710009866054}
+  - component: {fileID: 5102588810144960056}
   m_Layer: 0
   m_Name: LargeTomato (2)
   m_TagString: Untagged
@@ -714,7 +794,7 @@ Rigidbody:
   m_Drag: 0
   m_AngularDrag: 0.05
   m_UseGravity: 1
-  m_IsKinematic: 1
+  m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
@@ -775,6 +855,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9cf005ef1f854af46bd091f1cd1e7fd9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!138 &5102588810144960056
+FixedJoint:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5096361019534455805}
+  m_ConnectedBody: {fileID: 8490091575361424783}
+  m_ConnectedArticulationBody: {fileID: 0}
+  m_BreakForce: 100
+  m_BreakTorque: 100
+  m_EnableCollision: 0
+  m_EnablePreprocessing: 1
+  m_MassScale: 1
+  m_ConnectedMassScale: 1
 --- !u!1 &7233271954707672859
 GameObject:
   m_ObjectHideFlags: 0
@@ -790,6 +885,7 @@ GameObject:
   - component: {fileID: 1221567634277319080}
   - component: {fileID: 2830510297050571617}
   - component: {fileID: 5240586614474273387}
+  - component: {fileID: 7554731455159886676}
   m_Layer: 0
   m_Name: LargeTomato (3)
   m_TagString: Untagged
@@ -887,7 +983,7 @@ Rigidbody:
   m_Drag: 0
   m_AngularDrag: 0.05
   m_UseGravity: 1
-  m_IsKinematic: 1
+  m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
@@ -948,6 +1044,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9cf005ef1f854af46bd091f1cd1e7fd9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!138 &7554731455159886676
+FixedJoint:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7233271954707672859}
+  m_ConnectedBody: {fileID: 8490091575361424783}
+  m_ConnectedArticulationBody: {fileID: 0}
+  m_BreakForce: 100
+  m_BreakTorque: 100
+  m_EnableCollision: 0
+  m_EnablePreprocessing: 1
+  m_MassScale: 1
+  m_ConnectedMassScale: 1
 --- !u!1 &8820589142519238060
 GameObject:
   m_ObjectHideFlags: 0
