@@ -822,6 +822,7 @@ GameObject:
   - component: {fileID: 1296027671863110957}
   - component: {fileID: 7121725567698887438}
   - component: {fileID: 2375981972074295485}
+  - component: {fileID: 4953281050111584326}
   m_Layer: 0
   m_Name: WaterablePlot
   m_TagString: Waterable
@@ -1050,6 +1051,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nextStageWaitDelay: 10
   witherTime: 20
+--- !u!114 &4953281050111584326
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1722119063176852820}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ba5fb4d7aa5245e4e9a50c3ee3941ecd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &5273984608607102151
 GameObject:
   m_ObjectHideFlags: 0
@@ -1408,10 +1421,25 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 604e9aa58296e43af8b809ae7560b59e, type: 2}
+    - target: {fileID: 458745728846072592, guid: b443b9a9b35c1fa4d9201dc6def7838b,
+        type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1613870651857625663, guid: b443b9a9b35c1fa4d9201dc6def7838b,
         type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0.0319
+      objectReference: {fileID: 0}
+    - target: {fileID: 1797817974865972231, guid: b443b9a9b35c1fa4d9201dc6def7838b,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 2008435797193362081, guid: b443b9a9b35c1fa4d9201dc6def7838b,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4311539825310288933, guid: b443b9a9b35c1fa4d9201dc6def7838b,
         type: 3}

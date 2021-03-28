@@ -8,10 +8,12 @@ public class SeedCollider : MonoBehaviour
 	public GameObject seedLocation;
 
 	private Soil SM_Soil;   // Parent script
+	private GameObject Parent;
 
 	void Start()
     {
 		SM_Soil = this.transform.parent.gameObject.GetComponent<Soil>();
+		Parent = this.transform.parent.gameObject;
 	}
 
 	private void OnTriggerEnter(Collider collider)
@@ -23,24 +25,28 @@ public class SeedCollider : MonoBehaviour
 		if (collider.transform.gameObject.CompareTag("Seed"))
 		{
 
-            // GameObject parent = collider.transform.parent.gameObject;
+           
+			// GameObject parent = collider.transform.parent.gameObject;
             Debug.Log("collided with " + collider.transform.name);
 			GameObject other = collider.transform.gameObject;
 
-			PlantScript plantScript = other.GetComponent<PlantScript>();
-			Debug.Log("found plant script" + plantScript);
-
-			SM_Soil.SetHasSeed(true);
-			SM_Soil.SetPlant(plantScript);
-
-			other.GetComponent<Rigidbody>().isKinematic = true;
-			other.transform.position = seedLocation.transform.position;
-			other.transform.parent = seedLocation.transform;
 
 
-			// plant.transform.position = seedLocation.transform.position;
-			// collider.transform.position = new Vector3(0, 0, 0);
-			// plant.transform.parent = seedLocation.transform;
-		}
+            //Move seed
+            float step = 0.7f * Time.deltaTime;
+            while (true) //While it hasn't reach the ground
+            {
+                Debug.Log("Moving");
+                Vector3 newPos = Vector3.MoveTowards(other.transform.position, this.transform.position, step);
+                other.transform.position = newPos;
+                other.transform.parent.position = newPos;
+            }
+
+
+
+            // plant.transform.position = seedLocation.transform.position;
+            // collider.transform.position = new Vector3(0, 0, 0);
+            // plant.transform.parent = seedLocation.transform;
+        }
 	}
 }
