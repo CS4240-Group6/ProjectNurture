@@ -14,12 +14,15 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/WateringAndDigging/Watering.unity
     guid: 312395775863347e9a642d1e88f76100
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/WateringAndDigging/WateringAndSoil.unity
     guid: afcba8cf698cdf846a5cdee0eff19816
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/Main.unity
     guid: 7043e3ae99e2eac4ca45567b358a84bf
+  - enabled: 0
+    path: Assets/Scenes/Planting/Planting2.unity
+    guid: 5333aeaaef8ef9f40a5664ee06cae4ff
   m_configObjects:
     Unity.XR.Oculus.Settings: {fileID: 11400000, guid: 5680aa5963553b2459c4ab15d4169db8,
       type: 2}
