@@ -250,7 +250,7 @@ GameObject:
   - component: {fileID: 7909645484628301927}
   - component: {fileID: 5040164171575684923}
   - component: {fileID: 8180271293917717888}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: SeedCollider
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -17,7 +17,7 @@ public class SeedBagController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        InvokeRepeating("FrameUpdate", 0.0f, 5.0f);
+        InvokeRepeating("FrameUpdate", 0.0f, 1.0f);
     }
 
     // Update is called once per frame
