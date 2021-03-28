@@ -103,7 +103,7 @@ public class WaterStream : MonoBehaviour
         Ray ray = new Ray(transform.position, Vector3.down);
         
         // search downwards for a particular distance
-        Physics.Raycast(ray, out hit, raycastDistance); 
+        Physics.Raycast(ray, out hit, raycastDistance, Physics.DefaultRaycastLayers, QueryTriggerInteraction.Ignore); 
 
         // get the position of the collision location or the end of the raycast
         Vector3 endPoint;

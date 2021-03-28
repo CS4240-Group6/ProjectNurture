@@ -9,8 +9,6 @@ public class WaterBar : MonoBehaviour
     public GameObject goalSliderContainer;
     private Slider goalSlider;
 
-    private float componentHeight;
-
     private void Awake()
     {
         goalSlider = goalSliderContainer.GetComponent<Slider>();
@@ -18,12 +16,14 @@ public class WaterBar : MonoBehaviour
 
     // change the max amt of water required and reset the slider to 0
     // change the goal level as well
-    public void SetMaxWaterLevel(int maxWater, int newGoal) {
+    public void SetMaxWaterLevel(int maxWater) {
         progressSlider.maxValue = maxWater;
         goalSlider.maxValue = maxWater;
         progressSlider.value = 0;
+    }
 
-        goalSlider.maxValue = maxWater;
+    public void SetWaterGoal(int newGoal)
+    {
         goalSlider.value = newGoal;
     }
 
@@ -31,7 +31,4 @@ public class WaterBar : MonoBehaviour
         progressSlider.value = waterLevel;
     }
 
-    public void SetGoalLevel(int goalLevel) {
-        goalSlider.value = goalLevel;
-    }
 }

@@ -10,6 +10,13 @@
 [Ll]ogs/
 [Mm]emoryCaptures/
 
+# Do not track files created from build to PC
+MonoBleedingEdge/
+ProjectNurture_Data/
+UnityCrashHandler64.exe
+ProjectNurture.exe
+UnityPlayer.dll
+
 # Asset meta data should only be ignored when the corresponding asset is also ignored
 !/[Aa]ssets/**/*.meta
 
