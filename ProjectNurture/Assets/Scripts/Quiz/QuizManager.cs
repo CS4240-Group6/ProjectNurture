@@ -8,6 +8,7 @@ public class QuizManager : MonoBehaviour
 {
     public List<QuestionAndAnswers> QnA;
     public GameObject[] options;
+    public GameObject[] optionButtons;
     public int currentQuestion;
 
     //public GameObject Quizpanel;
@@ -35,12 +36,12 @@ public class QuizManager : MonoBehaviour
     {
         //Quizpanel.SetActive(false);
         //GoPanel.SetActive(true);
-        ScoreTxt.text = score + "/" + totalQuestions;
+        //ScoreTxt.text = score + "/" + totalQuestions;
     }
 
     public void correct()
     {
-        //when you are right
+        //When the player is right
         score += 1;
         QnA.RemoveAt(currentQuestion);
         StartCoroutine(waitForNext());
@@ -48,7 +49,7 @@ public class QuizManager : MonoBehaviour
 
     public void wrong()
     {
-        //when you answer wrong
+        //When the player is wrong
         QnA.RemoveAt(currentQuestion);
         StartCoroutine(waitForNext());
     }
@@ -63,13 +64,13 @@ public class QuizManager : MonoBehaviour
     {
         for (int i = 0; i < options.Length; i++)
         {
-            options[i].GetComponent<Image>().color = options[i].GetComponent<AnswerScript>().startColor;
-            options[i].GetComponent<AnswerScript>().isCorrect = false;
-            options[i].transform.GetChild(0).GetComponent<Text>().text = QnA[currentQuestion].Answers[i];
+            int index = i + 1; //for display purposes
+            options[i].GetComponent<Text>().text = index + ") " + QnA[currentQuestion].Answers[i];
+            optionButtons[i].GetComponent<AnswerScript>().isCorrect = false;  //set every option's correct value to be false first
 
-            if (QnA[currentQuestion].CorrectAnswer == i + 1)
+            if (QnA[currentQuestion].CorrectAnswer == i) //if the correct option is correct, set the isCorrect boolean to true
             {
-                options[i].GetComponent<AnswerScript>().isCorrect = true;
+                optionButtons[i].GetComponent<AnswerScript>().isCorrect = true;
             }
         }
     }

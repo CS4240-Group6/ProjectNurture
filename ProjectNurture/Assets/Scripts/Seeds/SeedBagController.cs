@@ -24,15 +24,15 @@ public class SeedBagController : MonoBehaviour
     void FrameUpdate()
     {
         //log
-        text.text = "In update function";
-        Debug.Log("In update function");
+        //text.text = "In update function";
+        //Debug.Log("In update function");
 
         RaycastHit hit;
 
         //log
-        Debug.DrawRay(this.transform.position, this.transform.up * 500f, Color.green);
-        Debug.Log(Physics.Raycast(this.transform.position, this.transform.up, out hit, 100, soilMask));
-        Debug.Log("hit is " + hit.transform.name);
+        //Debug.DrawRay(this.transform.position, this.transform.up * 500f, Color.green);
+        //Debug.Log(Physics.Raycast(this.transform.position, this.transform.up, out hit, 100, soilMask));
+        //Debug.Log("hit is " + hit.transform.name);
 
         if (Physics.Raycast(this.transform.position, this.transform.up, out hit, 100, soilMask))
         {
