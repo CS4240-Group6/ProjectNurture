@@ -6,23 +6,25 @@ using UnityEngine;
 public class HarvestScript : MonoBehaviour
 {
     UnityEvent onGrab;
+    UnityEvent onRelease;
 
-    // Start is called before the first frame update
     void Start()
     {
         onGrab = gameObject.GetComponent<Autohand.Grabbable>().onGrab;
         onGrab.AddListener(OnGrab);
-    }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+        onRelease = gameObject.GetComponent<Autohand.Grabbable>().onRelease;
+        onRelease.AddListener(OnRelease);
     }
 
     private void OnGrab()
     {
         this.GetComponent<Rigidbody>().isKinematic = false;
+    }
+
+    private void OnRelease()
+    {
+        this.gameObject.transform.parent = null;
     }
 
 }

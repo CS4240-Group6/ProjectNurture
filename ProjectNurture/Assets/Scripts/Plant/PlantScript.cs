@@ -6,33 +6,23 @@ public class PlantScript : MonoBehaviour
 {
     public GameObject[] PLANT_STAGES = new GameObject[5];
 
-    public AudioClip nextStageSoundEffect;
-    public AudioClip deadPlantSoundEffect;
-
     public const int WATER_LEVEL = 6;
     public const string SOIL_PREF = "CLAY_LOAM";
 
     public Material deadPlantMaterial;
+    public string harvestableTagName = "Harvestable";
 
     public Sprite ui_popup = null;
 
     private GameObject currentPrefab;
     private int currentIndex = 0;
     private bool isCurrentPlantBeingKilled = false;
-    private AudioSource audioSource;
-
     private float killPlantAnimationTotalTime = 3f;
-
 
     /**
      * API for PlantController to check if the soil and watering meets the conditions
      * for growth of plant
      */
-
-    private void Awake()
-    {
-        audioSource = GetComponent<AudioSource>();
-    }
 
     public int GetPreferredWaterLevel()
     {
@@ -55,7 +45,6 @@ public class PlantScript : MonoBehaviour
                 transform.GetChild(0).gameObject.SetActive(false);
             }
 
-            PlayAudio(nextStageSoundEffect);
             SetPrefab(currentIndex + 1);
         }
     }
@@ -65,23 +54,22 @@ public class PlantScript : MonoBehaviour
         isCurrentPlantBeingKilled = true;
         if (currentIndex == 0)
         {
-            PlayAudio(deadPlantSoundEffect);
             Destroy(gameObject);
-        } 
+        }
         else
         {
-            StartCoroutine(KillPlantAnimation());
+            StartCoroutine(KillPlantAnimationWithColour());
         }
     }
 
-    private IEnumerator KillPlantAnimation()
+    private IEnumerator KillPlantAnimationWithColour()
     {
         while (gameObject.activeSelf)
         {
             // change plant colour
             foreach (Transform child in currentPrefab.transform)
             {
-                Renderer renderer = child.GetComponent<Renderer>(); 
+                Renderer renderer = child.GetComponent<Renderer>();
 
                 Material[] newMaterials = new Material[renderer.materials.Length];
                 for (var j = 0; j < renderer.materials.Length; j++)
@@ -95,8 +83,6 @@ public class PlantScript : MonoBehaviour
             // move plant downwards to imitate plant collapsing
             currentPrefab.GetComponent<Rigidbody>().isKinematic = false;
 
-            PlayAudio(deadPlantSoundEffect);
-
             yield return new WaitForSeconds(killPlantAnimationTotalTime);
             Destroy(gameObject);
         }
@@ -105,6 +91,11 @@ public class PlantScript : MonoBehaviour
     public bool IsNextStagePresent()
     {
         return currentIndex < PLANT_STAGES.Length;
+    }
+
+    public bool IsHarvestable()
+    {
+        return currentIndex == PLANT_STAGES.Length - 1;
     }
 
     public bool IsHarvestStageComplete()
@@ -133,12 +124,6 @@ public class PlantScript : MonoBehaviour
 
         currentPrefab = Instantiate(PLANT_STAGES[index], transform.position, Quaternion.identity, transform);
         currentIndex = index;
-    }
-
-    private void PlayAudio(AudioClip c)
-    {
-        audioSource.clip = c;
-        audioSource.Play();
     }
 
     public Sprite GetUISprite()

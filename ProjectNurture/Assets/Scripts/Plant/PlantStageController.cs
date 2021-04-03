@@ -20,6 +20,11 @@ public class PlantStageController : MonoBehaviour
 	// time for coroutines
 	public float nextStageWaitDelay = 3f;
 	public float witherTime = 20f;
+	public float resetTimeDelay = 1.5f;
+
+	public AudioClip failSoundEffect;
+	public AudioClip successSoundEffect;
+	public AudioClip nextStageSoundEffect;
 
 	private void Awake()
 	{
@@ -44,11 +49,18 @@ public class PlantStageController : MonoBehaviour
 		}
 
 		// to reset the field once all fruits are harvested
-		else if (plantScript && !plantScript.IsNextStagePresent() && plantScript.IsHarvestStageComplete())
+		else if (plantScript && plantScript.IsHarvestStageComplete())
+		{
+			ResetStageInSuccess();
+		}
+
+        // to kill the plant if the soil is not correct
+        else if (hasSeed && isSeedCovered && plantScript && !IsSoilTypeCorrect())
         {
-			// TODO: play victory song then reset the plot
+            ResetStageInFailure();
+            waterablePlot.DisplayWrongSoilUI();
         }
-	}
+    }
 
 	private bool IsPlotWaterable()
     {
@@ -59,6 +71,11 @@ public class PlantStageController : MonoBehaviour
 	private bool IsPlantNeedsMet()
     {
 		return hasSeed && isSeedCovered && isWatered;
+    }
+
+	private bool IsSoilTypeCorrect()
+    {
+		return plantScript.GetSoilPref() == waterablePlot.GetSoilType();
     }
 
 	public void SetIsWatered(bool water)
@@ -91,14 +108,41 @@ public class PlantStageController : MonoBehaviour
 		return isSeedCovered;
 	}
 
-	public void ResetStage()
+	public void ResetStageInFailure()
+    {
+		// play fail audio
+		PlayAudio(failSoundEffect);
+
+		ResetStage();
+	}
+
+	public void ResetStageInSuccess()
 	{
+		// play success audio
+		PlayAudio(successSoundEffect);
+
+		ResetStage();
+	}
+
+	private void ResetStage()
+    {
 		if (nextStageRoutine != null)
 		{
 			StopCoroutine(nextStageRoutine);
 			nextStageRoutine = null;
 		}
 
+		// call plantScript to destroy itself
+		plantScript.KillPlant();
+		plantScript = null;
+
+		// reset plant state after a delay
+		StartCoroutine(StartReset());
+	}
+
+	private IEnumerator StartReset()
+    {
+		yield return new WaitForSeconds(resetTimeDelay);
 		// reset water
 		waterablePlot.ResetWater();
 		isWatered = false;
@@ -106,10 +150,6 @@ public class PlantStageController : MonoBehaviour
 		// reset seed state
 		hasSeed = false;
 		isSeedCovered = false;
-
-		// call plantScript to destroy itself
-		plantScript.KillPlant();
-		plantScript = null;
 	}
 
 	private IEnumerator StartNextStage()
@@ -124,6 +164,9 @@ public class PlantStageController : MonoBehaviour
 			}
 
 			yield return new WaitForSeconds(nextStageWaitDelay);
+
+			// play next stage audio
+			PlayAudio(nextStageSoundEffect);
 
 			// go to the next stage
 			plantScript.NextStage();
@@ -153,8 +196,13 @@ public class PlantStageController : MonoBehaviour
 		{
 			yield return new WaitForSeconds(witherTime);
 
-			ResetStage();
+			ResetStageInFailure();
 			isTimerOngoing = false;
 		}
+	}
+
+	private void PlayAudio(AudioClip c)
+	{
+		AudioSource.PlayClipAtPoint(c, transform.position);
 	}
 }
