@@ -34,6 +34,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1720498154393184762, guid: 02cb5061e9a8a4317a30805b7e83dda3,
         type: 3}
+      propertyPath: soilType
+      value: CLAY_LOAM
+      objectReference: {fileID: 0}
+    - target: {fileID: 1720498154393184762, guid: 02cb5061e9a8a4317a30805b7e83dda3,
+        type: 3}
+      propertyPath: SOIL_TYPE
+      value: CLAY_LOAM
+      objectReference: {fileID: 0}
+    - target: {fileID: 1720498154393184762, guid: 02cb5061e9a8a4317a30805b7e83dda3,
+        type: 3}
       propertyPath: waterLevelGoal
       value: 4
       objectReference: {fileID: 0}
@@ -152,5 +162,6 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: b10d4943f4b8043468228cb43171ebd9, type: 2}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 4953281050111584326, guid: 02cb5061e9a8a4317a30805b7e83dda3, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 02cb5061e9a8a4317a30805b7e83dda3, type: 3}

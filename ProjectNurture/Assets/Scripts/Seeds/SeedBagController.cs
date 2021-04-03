@@ -9,7 +9,7 @@ public class SeedBagController : MonoBehaviour
     public GameObject spawnLocation;
     public LayerMask soilMask;
 
-    private float raycastDistance = 10f;
+    private float raycastDistance = 1f;
     private float seedDropRate = 2f; // falls every 2 seconds
     private bool canSeedsDrop = true;
 

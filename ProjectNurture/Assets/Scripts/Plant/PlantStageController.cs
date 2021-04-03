@@ -20,6 +20,7 @@ public class PlantStageController : MonoBehaviour
 	// time for coroutines
 	public float nextStageWaitDelay = 3f;
 	public float witherTime = 20f;
+	public float resetTimeDelay = 1.5f;
 
 	private void Awake()
 	{
@@ -45,10 +46,17 @@ public class PlantStageController : MonoBehaviour
 
 		// to reset the field once all fruits are harvested
 		else if (plantScript && !plantScript.IsNextStagePresent() && plantScript.IsHarvestStageComplete())
-        {
+		{
 			// TODO: play victory song then reset the plot
+		}
+
+        // to kill the plant if the soil is not correct
+        else if (hasSeed && isSeedCovered && !IsSoilTypeCorrect())
+        {
+            ResetStage();
+            waterablePlot.DisplayWrongSoilUI();
         }
-	}
+    }
 
 	private bool IsPlotWaterable()
     {
@@ -59,6 +67,11 @@ public class PlantStageController : MonoBehaviour
 	private bool IsPlantNeedsMet()
     {
 		return hasSeed && isSeedCovered && isWatered;
+    }
+
+	private bool IsSoilTypeCorrect()
+    {
+		return plantScript.GetSoilPref() == waterablePlot.GetSoilType();
     }
 
 	public void SetIsWatered(bool water)
@@ -99,6 +112,17 @@ public class PlantStageController : MonoBehaviour
 			nextStageRoutine = null;
 		}
 
+		// call plantScript to destroy itself
+		plantScript.KillPlant();
+		plantScript = null;
+
+		// reset plant state after a delay
+		StartCoroutine(StartReset());
+	}
+
+	private IEnumerator StartReset()
+    {
+		yield return new WaitForSeconds(resetTimeDelay);
 		// reset water
 		waterablePlot.ResetWater();
 		isWatered = false;
@@ -106,10 +130,6 @@ public class PlantStageController : MonoBehaviour
 		// reset seed state
 		hasSeed = false;
 		isSeedCovered = false;
-
-		// call plantScript to destroy itself
-		plantScript.KillPlant();
-		plantScript = null;
 	}
 
 	private IEnumerator StartNextStage()

@@ -56,8 +56,9 @@ MonoBehaviour:
   - {fileID: 8348390437377399092, guid: 9227e8513955c3c4982fa2d0bbbad799, type: 3}
   nextStageSoundEffect: {fileID: 8300000, guid: 5b523f1adc38846ae8fed608b35af0e3,
     type: 3}
-  deadPlantSoundEffect: {fileID: 8300000, guid: 5b523f1adc38846ae8fed608b35af0e3,
+  deadPlantSoundEffect: {fileID: 8300000, guid: 313d95ae0007d00408352001c72a6139,
     type: 3}
+  successSoundEffect: {fileID: 8300000, guid: a93428ba87d93df45be55a89f397c084, type: 3}
   deadPlantMaterial: {fileID: 2100000, guid: 2a57dd5bdb0e88f438b1421781dcabc9, type: 2}
   ui_popup: {fileID: 21300000, guid: f0a3e8632c613944991b94b02f0f462b, type: 3}
 --- !u!114 &8652649758743645584

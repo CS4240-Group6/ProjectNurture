@@ -8,6 +8,7 @@ public class PlantScript : MonoBehaviour
 
     public AudioClip nextStageSoundEffect;
     public AudioClip deadPlantSoundEffect;
+    public AudioClip successSoundEffect;
 
     public const int WATER_LEVEL = 6;
     public const string SOIL_PREF = "CLAY_LOAM";
@@ -19,20 +20,12 @@ public class PlantScript : MonoBehaviour
     private GameObject currentPrefab;
     private int currentIndex = 0;
     private bool isCurrentPlantBeingKilled = false;
-    private AudioSource audioSource;
-
     private float killPlantAnimationTotalTime = 3f;
-
 
     /**
      * API for PlantController to check if the soil and watering meets the conditions
      * for growth of plant
      */
-
-    private void Awake()
-    {
-        audioSource = GetComponent<AudioSource>();
-    }
 
     public int GetPreferredWaterLevel()
     {
@@ -67,21 +60,21 @@ public class PlantScript : MonoBehaviour
         {
             PlayAudio(deadPlantSoundEffect);
             Destroy(gameObject);
-        } 
+        }
         else
         {
-            StartCoroutine(KillPlantAnimation());
+            StartCoroutine(KillPlantAnimationWithColour());
         }
     }
 
-    private IEnumerator KillPlantAnimation()
+    private IEnumerator KillPlantAnimationWithColour()
     {
         while (gameObject.activeSelf)
         {
             // change plant colour
             foreach (Transform child in currentPrefab.transform)
             {
-                Renderer renderer = child.GetComponent<Renderer>(); 
+                Renderer renderer = child.GetComponent<Renderer>();
 
                 Material[] newMaterials = new Material[renderer.materials.Length];
                 for (var j = 0; j < renderer.materials.Length; j++)
@@ -137,8 +130,7 @@ public class PlantScript : MonoBehaviour
 
     private void PlayAudio(AudioClip c)
     {
-        audioSource.clip = c;
-        audioSource.Play();
+        AudioSource.PlayClipAtPoint(c, transform.position);
     }
 
     public Sprite GetUISprite()
