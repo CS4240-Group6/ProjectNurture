@@ -822,8 +822,8 @@ GameObject:
   - component: {fileID: 1658605520078642544}
   - component: {fileID: 1720498154393184762}
   - component: {fileID: 1296027671863110957}
-  - component: {fileID: 7121725567698887438}
   - component: {fileID: 2375981972074295485}
+  - component: {fileID: 6662675157348129691}
   m_Layer: 6
   m_Name: WaterablePlot
   m_TagString: Waterable
@@ -1027,18 +1027,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &7121725567698887438
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1722119063176852820}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 88dedf8879fdb497c979f8d6c3f4a9cb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &2375981972074295485
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1053,6 +1041,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nextStageWaitDelay: 10
   witherTime: 20
+  resetTimeDelay: 1.5
+  failSoundEffect: {fileID: 8300000, guid: 313d95ae0007d00408352001c72a6139, type: 3}
+  successSoundEffect: {fileID: 8300000, guid: a93428ba87d93df45be55a89f397c084, type: 3}
+  nextStageSoundEffect: {fileID: 8300000, guid: 5b523f1adc38846ae8fed608b35af0e3,
+    type: 3}
+--- !u!114 &6662675157348129691
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1722119063176852820}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 88dedf8879fdb497c979f8d6c3f4a9cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2751468968890413605
 GameObject:
   m_ObjectHideFlags: 0

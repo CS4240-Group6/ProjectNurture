@@ -8,6 +8,7 @@ public class SeedBagController : MonoBehaviour
     public GameObject seedPrefab;
     public GameObject spawnLocation;
     public LayerMask soilMask;
+    public string playerTagLabel = "Player";
 
     private float raycastDistance = 1f;
     private float seedDropRate = 2f; // falls every 2 seconds
@@ -17,7 +18,9 @@ public class SeedBagController : MonoBehaviour
     {
         RaycastHit hit;
 
-        if (canSeedsDrop && Physics.Raycast(this.transform.position, this.transform.up, out hit, raycastDistance, soilMask))
+        bool isBeingHeldByPlayer = transform.parent && transform.parent.tag == playerTagLabel;
+
+        if (isBeingHeldByPlayer && canSeedsDrop && Physics.Raycast(this.transform.position, this.transform.up, out hit, raycastDistance, soilMask))
         {
             canSeedsDrop = false;
             StartCoroutine(DropSeed());

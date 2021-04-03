@@ -6,14 +6,11 @@ public class PlantScript : MonoBehaviour
 {
     public GameObject[] PLANT_STAGES = new GameObject[5];
 
-    public AudioClip nextStageSoundEffect;
-    public AudioClip deadPlantSoundEffect;
-    public AudioClip successSoundEffect;
-
     public const int WATER_LEVEL = 6;
     public const string SOIL_PREF = "CLAY_LOAM";
 
     public Material deadPlantMaterial;
+    public string harvestableTagName = "Harvestable";
 
     public Sprite ui_popup = null;
 
@@ -48,7 +45,7 @@ public class PlantScript : MonoBehaviour
                 transform.GetChild(0).gameObject.SetActive(false);
             }
 
-            PlayAudio(nextStageSoundEffect);
+            //SetPrefab(4);
             SetPrefab(currentIndex + 1);
         }
     }
@@ -58,7 +55,6 @@ public class PlantScript : MonoBehaviour
         isCurrentPlantBeingKilled = true;
         if (currentIndex == 0)
         {
-            PlayAudio(deadPlantSoundEffect);
             Destroy(gameObject);
         }
         else
@@ -88,8 +84,6 @@ public class PlantScript : MonoBehaviour
             // move plant downwards to imitate plant collapsing
             currentPrefab.GetComponent<Rigidbody>().isKinematic = false;
 
-            PlayAudio(deadPlantSoundEffect);
-
             yield return new WaitForSeconds(killPlantAnimationTotalTime);
             Destroy(gameObject);
         }
@@ -100,9 +94,29 @@ public class PlantScript : MonoBehaviour
         return currentIndex < PLANT_STAGES.Length;
     }
 
+    public bool IsHarvestable()
+    {
+        return currentIndex == PLANT_STAGES.Length - 1;
+    }
+
     public bool IsHarvestStageComplete()
     {
-        return false;
+        if (!IsHarvestable())
+        {
+            return false;
+        }
+
+        List<Transform> existingFruits = new List<Transform>();
+
+        foreach (Transform child in transform)
+        {
+            if (child.tag == harvestableTagName)
+            {
+                existingFruits.Add(child);
+            }
+        }
+
+        return existingFruits.Count == 0;
     }
 
     public bool IsPlantWaterable()
@@ -126,11 +140,6 @@ public class PlantScript : MonoBehaviour
 
         currentPrefab = Instantiate(PLANT_STAGES[index], transform.position, Quaternion.identity, transform);
         currentIndex = index;
-    }
-
-    private void PlayAudio(AudioClip c)
-    {
-        AudioSource.PlayClipAtPoint(c, transform.position);
     }
 
     public Sprite GetUISprite()

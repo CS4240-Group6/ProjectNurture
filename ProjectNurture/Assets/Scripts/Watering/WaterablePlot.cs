@@ -96,8 +96,14 @@ public class WaterablePlot : MonoBehaviour
 
     public void DisplayWrongSoilUI()
     {
-        noClayLoamSoilIcon.SetActive(soilType != CLAY_LOAM);
-        noWellDrainedSoilIcon.SetActive(soilType != WELL_DRAINED);
+        if (soilType == CLAY_LOAM)
+        {
+            noClayLoamSoilIcon.SetActive(true);
+        }
+        else if (soilType == WELL_DRAINED)
+        {
+            noWellDrainedSoilIcon.SetActive(true);
+        }
     }
 
     public void AddWater(int amount)
@@ -173,7 +179,7 @@ public class WaterablePlot : MonoBehaviour
     }
     private void WaterFail()
     {
-        plantStageController.ResetStage();
+        plantStageController.ResetStageInFailure();
         witherIcon.SetActive(true);
     }
 

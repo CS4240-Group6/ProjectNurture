@@ -22,6 +22,10 @@ public class PlantStageController : MonoBehaviour
 	public float witherTime = 20f;
 	public float resetTimeDelay = 1.5f;
 
+	public AudioClip failSoundEffect;
+	public AudioClip successSoundEffect;
+	public AudioClip nextStageSoundEffect;
+
 	private void Awake()
 	{
 		waterablePlot = GetComponent<WaterablePlot>();
@@ -45,15 +49,15 @@ public class PlantStageController : MonoBehaviour
 		}
 
 		// to reset the field once all fruits are harvested
-		else if (plantScript && !plantScript.IsNextStagePresent() && plantScript.IsHarvestStageComplete())
+		else if (plantScript && plantScript.IsHarvestStageComplete())
 		{
-			// TODO: play victory song then reset the plot
+			ResetStageInSuccess();
 		}
 
         // to kill the plant if the soil is not correct
-        else if (hasSeed && isSeedCovered && !IsSoilTypeCorrect())
+        else if (hasSeed && isSeedCovered && plantScript && !IsSoilTypeCorrect())
         {
-            ResetStage();
+            ResetStageInFailure();
             waterablePlot.DisplayWrongSoilUI();
         }
     }
@@ -104,8 +108,24 @@ public class PlantStageController : MonoBehaviour
 		return isSeedCovered;
 	}
 
-	public void ResetStage()
+	public void ResetStageInFailure()
+    {
+		// play fail audio
+		PlayAudio(failSoundEffect);
+
+		ResetStage();
+	}
+
+	public void ResetStageInSuccess()
 	{
+		// play success audio
+		PlayAudio(successSoundEffect);
+
+		ResetStage();
+	}
+
+	private void ResetStage()
+    {
 		if (nextStageRoutine != null)
 		{
 			StopCoroutine(nextStageRoutine);
@@ -145,6 +165,9 @@ public class PlantStageController : MonoBehaviour
 
 			yield return new WaitForSeconds(nextStageWaitDelay);
 
+			// play next stage audio
+			PlayAudio(nextStageSoundEffect);
+
 			// go to the next stage
 			plantScript.NextStage();
 
@@ -173,8 +196,13 @@ public class PlantStageController : MonoBehaviour
 		{
 			yield return new WaitForSeconds(witherTime);
 
-			ResetStage();
+			ResetStageInFailure();
 			isTimerOngoing = false;
 		}
+	}
+
+	private void PlayAudio(AudioClip c)
+	{
+		AudioSource.PlayClipAtPoint(c, transform.position);
 	}
 }
