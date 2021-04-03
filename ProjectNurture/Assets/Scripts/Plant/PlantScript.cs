@@ -45,7 +45,6 @@ public class PlantScript : MonoBehaviour
                 transform.GetChild(0).gameObject.SetActive(false);
             }
 
-            //SetPrefab(4);
             SetPrefab(currentIndex + 1);
         }
     }
@@ -101,22 +100,7 @@ public class PlantScript : MonoBehaviour
 
     public bool IsHarvestStageComplete()
     {
-        if (!IsHarvestable())
-        {
-            return false;
-        }
-
-        List<Transform> existingFruits = new List<Transform>();
-
-        foreach (Transform child in transform)
-        {
-            if (child.tag == harvestableTagName)
-            {
-                existingFruits.Add(child);
-            }
-        }
-
-        return existingFruits.Count == 0;
+        return false;
     }
 
     public bool IsPlantWaterable()
