@@ -14,7 +14,6 @@ GameObject:
   - component: {fileID: 2008435797193362081}
   - component: {fileID: 7419295689241317240}
   - component: {fileID: 7962048612830377120}
-  - component: {fileID: 1669934321022993529}
   m_Layer: 0
   m_Name: SM_Soil
   m_TagString: Soil
@@ -137,18 +136,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1163311251083476}
   m_CullTransparentMesh: 1
---- !u!114 &1669934321022993529
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1163311251083476}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 558263057623b1244b79ab27ba02b125, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &458745728846072592
 GameObject:
   m_ObjectHideFlags: 0
@@ -300,8 +287,8 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0.3, z: 0}
+  m_Radius: 0.37559777
+  m_Center: {x: 0, y: 0.18604891, z: 0.010451555}
 --- !u!114 &8180271293917717888
 MonoBehaviour:
   m_ObjectHideFlags: 0
