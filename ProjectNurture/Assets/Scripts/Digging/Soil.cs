@@ -38,7 +38,7 @@ public class Soil : MonoBehaviour
 		ui_popup_soil = this.gameObject.transform.GetChild(1).gameObject;
 		ui_popup_soil.SetActive(false);
 
-        ui_popup_plant = this.gameObject.transform.GetChild(2).gameObject;
+		ui_popup_plant = this.gameObject.transform.GetChild(2).gameObject;
 		ui_popup_plant.SetActive(false);
 	}
 
@@ -98,6 +98,11 @@ public class Soil : MonoBehaviour
 	{
 		return this.digging_state;
 	}
+
+	public bool GetIsSoilDug()
+    {
+		return digging_state == 1.0f;
+    }
 
 	public void setSoilMaterial(Color newColor)
 	{

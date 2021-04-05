@@ -9,6 +9,8 @@ TagManager:
   - Water
   - Seed
   - Soil
+  - Target
+  - Harvestable
   layers:
   - Default
   - TransparentFX

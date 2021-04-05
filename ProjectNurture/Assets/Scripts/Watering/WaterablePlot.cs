@@ -13,6 +13,12 @@ public class WaterablePlot : MonoBehaviour
     // index 0 contains the dry soil material, index 1 contains the wet soil material
     public Material[] soilMaterials;
 
+    private static string CLAY_LOAM = "CLAY_LOAM";
+    private static string WELL_DRAINED = "WELL_DRAINED";
+
+    // soil type can either be WELL_DRAINED or CLAY_LOAM
+    public string soilType = WELL_DRAINED;
+
     private int waterLevelCurrent = 0;
     private int waterLevelMax = 10;
     private int waterLevelGoal = 0;
@@ -22,6 +28,8 @@ public class WaterablePlot : MonoBehaviour
     private GameObject witherIcon;
     private GameObject noSeedIcon;
     private GameObject noSoilIcon;
+    private GameObject noWellDrainedSoilIcon;
+    private GameObject noClayLoamSoilIcon;
 
     private WaterBar waterBarScript;
     private SoundController soundController;
@@ -42,6 +50,8 @@ public class WaterablePlot : MonoBehaviour
         witherIcon = canvas.transform.GetChild(2).gameObject;
         noSeedIcon = canvas.transform.GetChild(3).gameObject;
         noSoilIcon = canvas.transform.GetChild(4).gameObject;
+        noWellDrainedSoilIcon = canvas.transform.GetChild(5).gameObject;
+        noClayLoamSoilIcon = canvas.transform.GetChild(6).gameObject;
 
         soilMound = gameObject.transform.GetChild(1).GetComponent<Soil>(); // Get script of soil mound
 
@@ -71,11 +81,29 @@ public class WaterablePlot : MonoBehaviour
         waterLevelGoal = goal;
         waterBarScript.SetWaterGoal(goal);
     }
+
     public void ResetWater()
     {
         waterLevelCurrent = 0;
         waterBarScript.SetWaterLevel(waterLevelCurrent);
         UpdateSoilMaterial();
+    }
+
+    public string GetSoilType()
+    {
+        return soilType;
+    }
+
+    public void DisplayWrongSoilUI()
+    {
+        if (soilType == CLAY_LOAM)
+        {
+            noClayLoamSoilIcon.SetActive(true);
+        }
+        else if (soilType == WELL_DRAINED)
+        {
+            noWellDrainedSoilIcon.SetActive(true);
+        }
     }
 
     public void AddWater(int amount)
@@ -151,7 +179,7 @@ public class WaterablePlot : MonoBehaviour
     }
     private void WaterFail()
     {
-        plantStageController.ResetStage();
+        plantStageController.ResetStageInFailure();
         witherIcon.SetActive(true);
     }
 

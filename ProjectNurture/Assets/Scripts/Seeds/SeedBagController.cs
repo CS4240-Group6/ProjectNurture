@@ -5,44 +5,34 @@ using UnityEngine.UI;
 
 public class SeedBagController : MonoBehaviour
 {
-    public GameObject target;
     public GameObject seedPrefab;
-    public Text text;
+    public GameObject spawnLocation;
+    public LayerMask soilMask;
+    public string playerTagLabel = "Player";
 
-    public float range = 10000;
-    public int numSeeds = 3;
+    private float raycastDistance = 1f;
+    private float seedDropRate = 2f; // falls every 2 seconds
+    private bool canSeedsDrop = true;
 
-    private int soilMask = 1 << 6;
-
-    // Start is called before the first frame update
-    void Start()
+    void FixedUpdate()
     {
-        InvokeRepeating("FrameUpdate", 0.0f, 1.0f);
-    }
-
-    // Update is called once per frame
-    void FrameUpdate()
-    {
-        //log
-        //text.text = "In update function";
-        //Debug.Log("In update function");
-
         RaycastHit hit;
 
-        //log
-        //Debug.DrawRay(this.transform.position, this.transform.up * 500f, Color.green);
-        //Debug.Log(Physics.Raycast(this.transform.position, this.transform.up, out hit, 100, soilMask));
-        //Debug.Log("hit is " + hit.transform.name);
+        bool isBeingHeldByPlayer = transform.parent && transform.parent.tag == playerTagLabel;
 
-        if (Physics.Raycast(this.transform.position, this.transform.up, out hit, 100, soilMask))
+        if (isBeingHeldByPlayer && canSeedsDrop && Physics.Raycast(this.transform.position, this.transform.up, out hit, raycastDistance, soilMask))
         {
-
-            Vector3 seedPosition = this.transform.position + this.transform.up * 0.29f;
-            for (int j = 0; j < 3; j++)
-                Instantiate(seedPrefab, seedPosition, Quaternion.identity);
-        }
-
+            canSeedsDrop = false;
+            StartCoroutine(DropSeed());
+        } 
 
     }
-}
 
+    private IEnumerator DropSeed()
+    {
+        Vector3 seedPosition = spawnLocation.transform.position;
+        Instantiate(seedPrefab, seedPosition, Quaternion.identity);
+        yield return new WaitForSeconds(seedDropRate);
+        canSeedsDrop = true;
+    }
+}

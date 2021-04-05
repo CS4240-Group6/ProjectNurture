@@ -8,27 +8,27 @@ public class SeedCollider : MonoBehaviour
 	public GameObject seedLocation;
 
 	private Soil SM_Soil;   // Parent script
+	private GameObject Parent;
 
 	void Start()
     {
 		SM_Soil = this.transform.parent.gameObject.GetComponent<Soil>();
+		Parent = this.transform.parent.gameObject;
 	}
 
 	private void OnTriggerEnter(Collider collider)
 	{
 
-		// If the seeds hit the collider, means there are seeds inside the hole
-		// attach seeds onto the seedLocation
+		// If the seeds hit the collider, attach seeds onto the seedLocation
 
-		if (collider.transform.gameObject.CompareTag("Seed"))
+		bool isSoilDug = SM_Soil.GetIsSoilDug();
+		bool isSeedAlreadyPresent = SM_Soil.GetHasSeed();
+
+		if (isSoilDug && !isSeedAlreadyPresent && collider.transform.gameObject.CompareTag("Seed"))
 		{
-
-            // GameObject parent = collider.transform.parent.gameObject;
-            Debug.Log("collided with " + collider.transform.name);
 			GameObject other = collider.transform.gameObject;
 
 			PlantScript plantScript = other.GetComponent<PlantScript>();
-			Debug.Log("found plant script" + plantScript);
 
 			SM_Soil.SetHasSeed(true);
 			SM_Soil.SetPlant(plantScript);
@@ -36,11 +36,6 @@ public class SeedCollider : MonoBehaviour
 			other.GetComponent<Rigidbody>().isKinematic = true;
 			other.transform.position = seedLocation.transform.position;
 			other.transform.parent = seedLocation.transform;
-
-
-			// plant.transform.position = seedLocation.transform.position;
-			// collider.transform.position = new Vector3(0, 0, 0);
-			// plant.transform.parent = seedLocation.transform;
-		}
+        }
 	}
 }
