@@ -88,10 +88,14 @@ public class QuizManager : MonoBehaviour
     {
         if (QnA.Count > 0)
         {
-            currentQuestion = Random.Range(0, QnA.Count);
+            // currentQuestion = Random.Range(0, QnA.Count); for random ordering of questions
 
-            QuestionTxt.text = QnA[currentQuestion].Question;
-            SetAnswers();
+            for (int i = QnA.Count-1; i >= 0; i--) //display questions from ascending order
+            {
+                currentQuestion = i;
+                QuestionTxt.text = QnA[currentQuestion].Question;
+                SetAnswers();
+            }
         }
         else
         {

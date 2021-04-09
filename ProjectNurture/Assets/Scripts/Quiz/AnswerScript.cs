@@ -6,7 +6,9 @@ using UnityEngine.UI;
 public class AnswerScript : MonoBehaviour
 {
     public bool isCorrect = false;
-    public QuizManager quizManager; 
+    public QuizManager quizManager;
+    public AudioSource correctAnswerAudio;
+    public AudioSource wrongAnswerAudio;
 
     public void Answer()
     {
@@ -14,11 +16,13 @@ public class AnswerScript : MonoBehaviour
         {
             Debug.Log("Correct Answer!");
             quizManager.correct();
+            correctAnswerAudio.Play();
         }
         else
         {
             Debug.Log("Wrong Answer!!!");
             quizManager.wrong();
+            wrongAnswerAudio.Play();
         }
     }
 
