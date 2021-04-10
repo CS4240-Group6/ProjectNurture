@@ -6,8 +6,8 @@ public class PlantScript : MonoBehaviour
 {
     public GameObject[] PLANT_STAGES = new GameObject[5];
 
-    public const int WATER_LEVEL = 6;
-    public const string SOIL_PREF = "CLAY_LOAM";
+    public int WATER_LEVEL = 6;
+    public string SOIL_PREF = "CLAY_LOAM";
 
     public Material deadPlantMaterial;
     public string harvestableTagName = "Harvestable";

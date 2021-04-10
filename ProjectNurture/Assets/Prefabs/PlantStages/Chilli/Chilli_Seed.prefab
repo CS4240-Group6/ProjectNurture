@@ -53,6 +53,8 @@ MonoBehaviour:
   - {fileID: 4713309783054109696, guid: 9c55751fb3bc7d346ab1cb9da21f881a, type: 3}
   - {fileID: 5039031772667712543, guid: 224550cfd1b1d9e499b12590f0aee46f, type: 3}
   - {fileID: 8348390437377399092, guid: 75e19cb0c1c50eb459207abfae12490e, type: 3}
+  WATER_LEVEL: 5
+  SOIL_PREF: WELL_DRAINED
   deadPlantMaterial: {fileID: 2100000, guid: 2a57dd5bdb0e88f438b1421781dcabc9, type: 2}
   harvestableTagName: Harvestable
   ui_popup: {fileID: 21300000, guid: eb7a857967ed47f469d3c0bd5576ee56, type: 3}
