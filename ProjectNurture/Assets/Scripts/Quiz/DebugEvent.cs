@@ -3,7 +3,7 @@ using UnityEngine;
 public class DebugEvent : MonoBehaviour
 {
     private GameObject btn1, btn2, btn3;
-
+    
     public void OnCustomButtonPress(string option)
     {
         Debug.Log("We pushed option " + option + "!");
