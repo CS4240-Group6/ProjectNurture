@@ -48,11 +48,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PLANT_STAGES:
-  - {fileID: 8072357959580027251, guid: 9e055f15fb87ecd4388db0c20b84d15f, type: 3}
-  - {fileID: 1465542291859605451, guid: 7d08bc796c7cec04da9b287d7f0b7b19, type: 3}
-  - {fileID: 4713309783054109696, guid: 7f7b0d25fe9244ef2b1fb5a4ab4785a9, type: 3}
-  - {fileID: 5039031772667712543, guid: bce22e7cbb1180f4bb8dca6739141cd5, type: 3}
-  - {fileID: 8348390437377399092, guid: 9227e8513955c3c4982fa2d0bbbad799, type: 3}
+  - {fileID: 8072357959580027251, guid: 25eee0de5d0a89a46b675fb7f74fd4a4, type: 3}
+  - {fileID: 1465542291859605451, guid: ec957a887e357244e91877e125fc68de, type: 3}
+  - {fileID: 4713309783054109696, guid: 9c55751fb3bc7d346ab1cb9da21f881a, type: 3}
+  - {fileID: 5039031772667712543, guid: 224550cfd1b1d9e499b12590f0aee46f, type: 3}
+  - {fileID: 8348390437377399092, guid: 75e19cb0c1c50eb459207abfae12490e, type: 3}
   deadPlantMaterial: {fileID: 2100000, guid: 2a57dd5bdb0e88f438b1421781dcabc9, type: 2}
   harvestableTagName: Harvestable
   ui_popup: {fileID: 21300000, guid: eb7a857967ed47f469d3c0bd5576ee56, type: 3}
@@ -191,7 +191,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: b015085f81048cf458ff22f8ede46997, type: 2}
+  - {fileID: 2100000, guid: 451bcb2fcc92c4461a88c9371c519dec, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
