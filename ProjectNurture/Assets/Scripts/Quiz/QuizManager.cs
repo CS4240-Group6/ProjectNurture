@@ -1,3 +1,4 @@
+﻿using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -19,6 +20,7 @@ public class QuizManager : MonoBehaviour
     public GameObject[] options;
     public GameObject[] optionButtons;
     public int currentQuestion;
+    private int questionNumber;
 
     //public GameObject Quizpanel;
     //public GameObject GoPanel;
@@ -29,12 +31,20 @@ public class QuizManager : MonoBehaviour
     private int totalQuestions = 0;
     private int totalScore = 0;
 
+    public AudioSource winSoundEffect;
+    public AudioSource loseSoundEffect;
+    public GameObject plantModel;
+    private List<string> wrongQuestions = new List<string>();
+    public GameObject debugEvent;
+
     private void Start()
     {
         totalQuestions = QnA.Count; // QnA.Count will decrease everytime a question is answered
         TotalScore.text = "0/" + totalQuestions;
         //GoPanel.SetActive(false);
         generateQuestion();
+        plantModel.SetActive(true);
+        wrongQuestions.Clear();
     }
 
     public void retry()
@@ -42,14 +52,40 @@ public class QuizManager : MonoBehaviour
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
-    void GameOver()
+    public void GameOver()
     {
-        //Quizpanel.SetActive(false);
-        //GoPanel.SetActive(true);
+        string wrongQuestionsText = "";
+        plantModel.SetActive(false);
+
+        if (wrongQuestions.Count == 0)
+        {
+            wrongQuestionsText = "none";
+        }
+        else
+        {
+            wrongQuestionsText = string.Join(", ", wrongQuestions.ToArray());
+        }
+
+        if (totalScore >= totalQuestions / 2)
+        {
+            QuestionTxt.text = "Congratulations, You Won! (づ｡◕‿‿◕｡)づ";
+            winSoundEffect.Play(); 
+            options[0].GetComponent<Text>().text = "Questions you got wrong: " + wrongQuestionsText;
+        }
+        else
+        {
+            QuestionTxt.text = "Game Over, You lost! Did you revise? ಠ╭╮ಠ";
+            loseSoundEffect.Play();
+            options[0].GetComponent<Text>().text = "Questions you got wrong: " + wrongQuestionsText;
+        }
+
+        options[1].GetComponent<Text>().text = "Thank you for playing our game! :)";
+        options[2].GetComponent<Text>().text = "We hope you enjoyed your stay, keep on farming!";
     }
 
     public void correct()
     {
+        questionNumber += 1;
         //When the player is right
         totalScore += 1;
         QnA.RemoveAt(currentQuestion);
@@ -59,9 +95,12 @@ public class QuizManager : MonoBehaviour
 
     public void wrong()
     {
+        questionNumber += 1;
         //When the player is wrong
         QnA.RemoveAt(currentQuestion);
         StartCoroutine(waitForNext());
+        Debug.Log("current question: " + questionNumber);
+        wrongQuestions.Add("" + questionNumber);
     }
 
     IEnumerator waitForNext()
