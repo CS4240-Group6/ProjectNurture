@@ -8,6 +8,10 @@ ProjectNurture is an educational game that educates players on the various plant
 
 In the past year as COVID19 sweeps the globe, Singapore's food supply has been challenged as it dwindles due to panic buying. There is therefore an national initiative to reduce dependency on food imports with the SG "30 by 30" vision where by 30% of Singapore's nutritional needs will be produced locally in urban farms by 2030. With our game, we hope to garner interest and knowledge about farming in more people in preparation for the day.
 
+Links: 
+NUS 18th STEPs Page - https://uvents.nus.edu.sg/event/18th-steps/module/CS4240/project/6/
+Youtube Trailer - https://www.youtube.com/watch?v=jmCed4jUGlE
+
 ## Platform
 Best run on Oculus Quest / Oculus Quest 2.
 
@@ -49,3 +53,5 @@ The player can move via teleportation within this area. To teleport, press the B
 
 <li>Enjoy and leave us feedback :-)</li>
 </ol>
+
+![syyENUv](https://user-images.githubusercontent.com/7495242/114736017-51445080-9d78-11eb-84ab-12ce8a27377c.png)
