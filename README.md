@@ -36,9 +36,9 @@ You can also navigate to our Github Release page to download the exectuable file
 - <span style="color:gray">SteamVR (Not Used)</span>
 
 ## Controls (On Oculus Quest)
-B - Teleport
-TRIGGER + GRIP - Grab
-Left Joystick button - Move
+B - Teleport <br/>
+TRIGGER + GRIP - Grab <br/>
+Left Joystick button - Move <br/>
 
 ## Game Play Instructions
 <ol>
