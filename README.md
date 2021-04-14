@@ -8,7 +8,7 @@ ProjectNurture is an educational game that educates players on the various plant
 
 In the past year as COVID19 sweeps the globe, Singapore's food supply has been challenged as it dwindles due to panic buying. There is therefore an national initiative to reduce dependency on food imports with the SG "30 by 30" vision where by 30% of Singapore's nutritional needs will be produced locally in urban farms by 2030. With our game, we hope to garner interest and knowledge about farming in more people in preparation for the day.
 
-Links: 
+Links: <br/>
 NUS 18th STEPs Page - https://uvents.nus.edu.sg/event/18th-steps/module/CS4240/project/6/ <br/>
 Youtube Trailer - https://www.youtube.com/watch?v=jmCed4jUGlE
 
